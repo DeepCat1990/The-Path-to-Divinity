@@ -12,7 +12,7 @@ class MainWindow(QMainWindow):
         
     def setup_ui(self):
         self.setWindowTitle("修仙之路")
-        self.setFixedSize(600, 480)
+        self.setFixedSize(600, 560)
         
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -43,16 +43,40 @@ class MainWindow(QMainWindow):
         stats_layout.addWidget(self.talent_label)
         layout.addLayout(stats_layout)
         
-        # 血条
-        health_layout = QVBoxLayout()
+        # 攻击力属性
+        attack_layout = QHBoxLayout()
+        self.physical_attack_label = QLabel(f"物理攻击: {char.physical_attack}")
+        self.spell_attack_label = QLabel(f"法术攻击: {char.spell_attack}")
+        self.physical_attack_label.setStyleSheet("color: #cc6600; font-weight: bold;")
+        self.spell_attack_label.setStyleSheet("color: #6600cc; font-weight: bold;")
+        attack_layout.addWidget(self.physical_attack_label)
+        attack_layout.addWidget(self.spell_attack_label)
+        layout.addLayout(attack_layout)
+        
+        # 血条和法力条
+        bars_layout = QVBoxLayout()
         self.health_label = QLabel(f"生命值: {char.health}/100")
         self.health_bar = QProgressBar()
         self.health_bar.setMaximum(100)
         self.health_bar.setValue(char.health)
         self.health_bar.setStyleSheet("QProgressBar::chunk { background-color: #ff4444; }")
-        health_layout.addWidget(self.health_label)
-        health_layout.addWidget(self.health_bar)
-        layout.addLayout(health_layout)
+        
+        self.mana_label = QLabel(f"法力值: {char.mana}/{char.max_mana}")
+        self.mana_bar = QProgressBar()
+        self.mana_bar.setMaximum(char.max_mana)
+        self.mana_bar.setValue(char.mana)
+        self.mana_bar.setStyleSheet("QProgressBar::chunk { background-color: #4444ff; }")
+        
+        bars_layout.addWidget(self.health_label)
+        bars_layout.addWidget(self.health_bar)
+        bars_layout.addWidget(self.mana_label)
+        bars_layout.addWidget(self.mana_bar)
+        layout.addLayout(bars_layout)
+        
+        # 技能显示
+        self.skills_label = QLabel("已学技能: 无")
+        self.skills_label.setStyleSheet("color: #0066cc; font-weight: bold;")
+        layout.addWidget(self.skills_label)
         
         # 状态显示
         self.status_label = QLabel(self._get_status(char))
@@ -85,13 +109,18 @@ class MainWindow(QMainWindow):
         event_bus.subscribe("character_updated", self.update_character_info)
         event_bus.subscribe("message", self.add_message)
         event_bus.subscribe("day_changed", self.update_day)
+        event_bus.subscribe("skill_learned", self.update_skills)
         
     def update_character_info(self, character_data):
         self.power_label.setText(f"修为: {character_data['power']}")
         self.age_label.setText(f"年龄: {character_data['age']}")
         self.talent_label.setText(f"天赋: {character_data['talent']}")
+        self.physical_attack_label.setText(f"物理攻击: {character_data['physical_attack']}")
+        self.spell_attack_label.setText(f"法术攻击: {character_data['spell_attack']}")
         self.health_label.setText(f"生命值: {character_data['health']}/100")
         self.health_bar.setValue(character_data['health'])
+        self.mana_label.setText(f"法力值: {character_data['mana']}/{character_data['max_mana']}")
+        self.mana_bar.setValue(character_data['mana'])
         self.status_label.setText(self._get_status(character_data))
         
     def _get_status(self, char_data):
@@ -144,3 +173,18 @@ class MainWindow(QMainWindow):
         
     def update_day(self, day):
         self.day_label.setText(f"第{day}天")
+        
+    def update_skills(self, skill_data):
+        learned = self.game.skill_manager.get_learned_skills()
+        if learned:
+            skill_names = [f"{skill[1]['name']}({skill[1]['realm']})" for skill in learned]
+            self.skills_label.setText(f"已学技能: {', '.join(skill_names)}")
+        else:
+            self.skills_label.setText("已学技能: 无")
+            
+        # 更新攻击力
+        physical, spell = self.game.skill_manager.get_total_attack_power()
+        char = self.game.character
+        char.physical_attack = 5 + physical
+        char.spell_attack = spell
+        event_bus.emit("character_updated", char.__dict__)

@@ -7,6 +7,10 @@ class Character:
         self.health = config["initial_health"]
         self.age = config["initial_age"]
         self.talent = random.randint(*config["talent_range"])
+        self.mana = 50
+        self.max_mana = 50
+        self.physical_attack = 5
+        self.spell_attack = 0
         
     def train(self, config):
         gain_range = config["power_gain"]

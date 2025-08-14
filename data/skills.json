@@ -1,0 +1,94 @@
+{
+  "physical_skills": {
+    "mortal_fist": {
+      "name": "凡人拳法",
+      "type": "physical",
+      "realm": "凡人",
+      "level": 1,
+      "power_requirement": 0,
+      "physical_attack": 8,
+      "description": "凡人习练的基础拳法，招式简单朴实，但胜在实用。虽无玄妙之处，却是所有武学的根基。"
+    },
+    "iron_body": {
+      "name": "铁布衫",
+      "type": "physical",
+      "realm": "练气",
+      "level": 2,
+      "power_requirement": 25,
+      "physical_attack": 15,
+      "defense_bonus": 10,
+      "description": "练气期修士的护体功法，运转灵力于体表，如铁布包身。可大幅提升肉身防御，抵御刀剑之伤。"
+    },
+    "vajra_palm": {
+      "name": "金刚掌",
+      "type": "physical",
+      "realm": "筑基",
+      "level": 3,
+      "power_requirement": 60,
+      "physical_attack": 35,
+      "description": "筑基期的上乘掌法，掌力如金刚不坏，一掌拍出可碎石裂金。传说大成者一掌可开山裂石。"
+    },
+    "dragon_elephant_force": {
+      "name": "龙象般若功",
+      "type": "physical",
+      "realm": "结丹",
+      "level": 4,
+      "power_requirement": 120,
+      "physical_attack": 80,
+      "description": "结丹期的绝世武学，修炼者力大如龙象，每一层都能增加一龙一象之力。传说十三层大成可力敌仙人。"
+    }
+  },
+  "spell_skills": {
+    "spirit_missile": {
+      "name": "灵力弹",
+      "type": "spell",
+      "realm": "练气",
+      "level": 1,
+      "power_requirement": 15,
+      "spell_attack": 12,
+      "mana_cost": 8,
+      "description": "练气期最基础的攻击法术，将体内灵力凝聚成弹丸射出。虽然威力有限，但胜在消耗较小，适合初学者。"
+    },
+    "fire_snake": {
+      "name": "火蛇术",
+      "type": "spell",
+      "realm": "练气",
+      "level": 2,
+      "power_requirement": 35,
+      "spell_attack": 25,
+      "mana_cost": 15,
+      "description": "练气后期的火系法术，凝聚火焰成蛇形攻击敌人。火蛇灵活多变，可绕过障碍物攻击，威力不俗。"
+    },
+    "ice_prison": {
+      "name": "玄冰牢",
+      "type": "spell",
+      "realm": "筑基",
+      "level": 3,
+      "power_requirement": 70,
+      "spell_attack": 45,
+      "mana_cost": 25,
+      "control_effect": true,
+      "description": "筑基期的冰系法术，瞬间凝结玄冰困住敌人。不仅有攻击效果，还能限制敌人行动，是攻守兼备的法术。"
+    },
+    "thunder_tribulation": {
+      "name": "雷劫术",
+      "type": "spell",
+      "realm": "结丹",
+      "level": 4,
+      "power_requirement": 150,
+      "spell_attack": 100,
+      "mana_cost": 40,
+      "description": "结丹期的顶级雷系法术，模拟天劫之威。雷电从天而降，威力惊人，但消耗巨大，需谨慎使用。"
+    },
+    "sword_rain": {
+      "name": "万剑诀",
+      "type": "spell",
+      "realm": "元婴",
+      "level": 5,
+      "power_requirement": 300,
+      "spell_attack": 200,
+      "mana_cost": 80,
+      "description": "元婴期的剑修绝学，御剑如雨，万剑齐发。每一柄剑都蕴含强大剑意，可同时攻击多个目标，威震四方。"
+    }
+  }
+}
