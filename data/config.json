@@ -5,6 +5,16 @@
     "initial_age": 16,
     "talent_range": [1, 10]
   },
+  "actions": {
+    "train": {
+      "duration": 60,
+      "name": "修炼"
+    },
+    "adventure": {
+      "duration": 30,
+      "name": "历练"
+    }
+  },
   "events": {
     "train": {
       "power_gain": [1, 5],
