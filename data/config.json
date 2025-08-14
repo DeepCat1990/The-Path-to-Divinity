@@ -1,0 +1,31 @@
+{
+  "character": {
+    "initial_power": 10,
+    "initial_health": 100,
+    "initial_age": 16,
+    "talent_range": [1, 10]
+  },
+  "events": {
+    "train": {
+      "power_gain": [1, 5],
+      "talent_multiplier": 0.5
+    },
+    "adventure": [
+      {
+        "name": "发现灵草",
+        "power_bonus": 15,
+        "probability": 0.3
+      },
+      {
+        "name": "遭遇心魔",
+        "health_loss": [10, 20],
+        "probability": 0.4
+      },
+      {
+        "name": "顿悟修炼",
+        "talent_bonus": 1,
+        "probability": 0.3
+      }
+    ]
+  }
+}
