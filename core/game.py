@@ -21,11 +21,13 @@ class Game:
         
     def train(self):
         self.character.train(self.config["events"]["train"])
+        self._sync_character_to_entity()
         self.next_day()
         
     def adventure(self):
         self.character.adventure(self.config["events"]["adventure"])
         self._check_skill_learning()
+        self._sync_character_to_entity()
         self.next_day()
         
     def _check_skill_learning(self):
@@ -64,3 +66,29 @@ class Game:
         
     def get_sect_info(self):
         return self.sect_manager.get_current_sect_info()
+        
+    def _sync_character_to_entity(self):
+        """同步角色数据到ECS实体"""
+        if hasattr(self, 'player_entity_id'):
+            player_entity = world_manager.get_entity(self.player_entity_id)
+            if player_entity:
+                attr = player_entity.get_component("AttributeComponent")
+                if attr:
+                    # 同步基础属性
+                    attr.age = self.character.age
+                    attr.health = self.character.health
+                    attr.mana = self.character.mana
+                    attr.max_mana = self.character.max_mana
+                    attr.physical_attack = self.character.physical_attack
+                    attr.spell_attack = self.character.spell_attack
+                    
+                    # 如果没有power属性，添加它
+                    if not hasattr(attr, 'power'):
+                        attr.power = self.character.power
+                    else:
+                        attr.power = self.character.power
+                        
+                    if not hasattr(attr, 'talent'):
+                        attr.talent = self.character.talent
+                    else:
+                        attr.talent = self.character.talent

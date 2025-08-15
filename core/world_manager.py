@@ -9,6 +9,8 @@ from .modules.character_system import CharacterSystem
 from .modules.spell_system import SpellSystem
 from .modules.encounter_system import EncounterSystem
 from .modules.combat_system import CombatSystem as ModuleCombatSystem
+from .modules.npc_system import NPCSystem
+from .modules.taiwu_system import TaiwuTimeSystem, StanceSystem, AptitudeSystem, RegionSystem, XiangshuSystem
 
 class WorldManager:
     """游戏世界管理器 - 管理ECS和游戏主循环"""
@@ -21,6 +23,7 @@ class WorldManager:
         self.game_time = 0.0
         self.day_length = 60.0  # 一天60秒
         self.current_day = 1
+        self.month_length = 30.0 * 60.0  # 一月30天，每天60秒
         
         self._initialize_systems()
         self._initialize_modules()
@@ -41,6 +44,14 @@ class WorldManager:
         self.spell_system = SpellSystem(self)
         self.encounter_system = EncounterSystem(self)
         self.combat_system = ModuleCombatSystem(self)
+        self.npc_system = NPCSystem(self)
+        
+        # 太吾系统
+        self.time_system = TaiwuTimeSystem()
+        self.stance_system = StanceSystem()
+        self.aptitude_system = AptitudeSystem()
+        self.region_system = RegionSystem()
+        self.xiangshu_system = XiangshuSystem()
     
     def _setup_event_handlers(self):
         """设置事件处理器"""
@@ -93,12 +104,17 @@ class WorldManager:
             self.current_day = new_day
             event_bus.emit("day_changed", self.current_day)
             self._process_daily_events()
+            
+            # 检查是否进入新月
+            if self.current_day % 30 == 1:
+                self.time_system.advance_month()
         
         # 更新所有系统
         for system in self.systems:
             system.update(delta_time)
             
         # 模块不需要更新，它们通过事件响应
+        # NPC系统会自动响应day_changed事件
     
     def _process_daily_events(self):
         """处理每日事件"""

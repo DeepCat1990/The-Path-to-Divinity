@@ -1,0 +1,104 @@
+{
+  "time_system": {
+    "months_per_year": 12,
+    "days_per_month": 30,
+    "lifespan_base": 600,
+    "aging_rate": 1
+  },
+  "stances": {
+    "righteous": {
+      "name": "刚正",
+      "description": "正义凛然，嫉恶如仇",
+      "npc_reaction_bonus": {"righteous": 20, "benevolent": 10, "rebellious": -15, "selfish": -20},
+      "encounter_modifiers": {"help_weak": 1.5, "punish_evil": 1.3}
+    },
+    "benevolent": {
+      "name": "仁善", 
+      "description": "慈悲为怀，救苦救难",
+      "npc_reaction_bonus": {"benevolent": 20, "righteous": 10, "selfish": -10},
+      "encounter_modifiers": {"healing": 1.4, "charity": 1.6}
+    },
+    "neutral": {
+      "name": "中庸",
+      "description": "不偏不倚，随遇而安",
+      "npc_reaction_bonus": {"neutral": 15},
+      "encounter_modifiers": {"balanced": 1.2}
+    },
+    "rebellious": {
+      "name": "叛逆",
+      "description": "桀骜不驯，反抗权威",
+      "npc_reaction_bonus": {"rebellious": 20, "selfish": 10, "righteous": -15},
+      "encounter_modifiers": {"challenge_authority": 1.4}
+    },
+    "selfish": {
+      "name": "唯我",
+      "description": "自私自利，不择手段",
+      "npc_reaction_bonus": {"selfish": 20, "righteous": -20, "benevolent": -15},
+      "encounter_modifiers": {"personal_gain": 1.5}
+    }
+  },
+  "aptitudes": {
+    "combat": {
+      "sword": {"name": "剑法", "description": "剑术修炼天赋"},
+      "palm": {"name": "掌法", "description": "掌法修炼天赋"},
+      "finger": {"name": "指法", "description": "指法修炼天赋"},
+      "internal": {"name": "内功", "description": "内功修炼天赋"}
+    },
+    "crafting": {
+      "medicine": {"name": "医术", "description": "医药制作天赋"},
+      "poison": {"name": "毒术", "description": "毒药制作天赋"},
+      "forging": {"name": "锻造", "description": "武器锻造天赋"},
+      "alchemy": {"name": "炼丹", "description": "丹药炼制天赋"}
+    },
+    "social": {
+      "music": {"name": "音律", "description": "音乐才能"},
+      "chess": {"name": "弈棋", "description": "棋艺天赋"},
+      "painting": {"name": "书画", "description": "书画才能"}
+    }
+  },
+  "regions": {
+    "central_plains": {
+      "name": "中原",
+      "description": "武林正道聚集之地",
+      "dominant_sects": ["shaolin", "wudang", "emei"],
+      "resources": ["iron_ore", "medicinal_herbs"],
+      "climate": "temperate"
+    },
+    "western_regions": {
+      "name": "西域",
+      "description": "异域风情，奇珍异宝",
+      "dominant_sects": ["tianshan", "kunlun"],
+      "resources": ["rare_gems", "exotic_spices"],
+      "climate": "desert"
+    },
+    "southern_wilderness": {
+      "name": "南疆",
+      "description": "瘴气弥漫，毒虫横行",
+      "dominant_sects": ["wudu", "miao"],
+      "resources": ["poison_materials", "rare_insects"],
+      "climate": "tropical"
+    }
+  },
+  "xiangshu_invasion": {
+    "phases": [
+      {
+        "name": "初现征兆",
+        "month_start": 12,
+        "description": "奇异现象开始出现",
+        "effects": {"encounter_rate": 1.1, "danger_level": 1.05}
+      },
+      {
+        "name": "小规模入侵",
+        "month_start": 36,
+        "description": "相枢开始小规模入侵",
+        "effects": {"encounter_rate": 1.3, "danger_level": 1.2, "npc_panic": 0.1}
+      },
+      {
+        "name": "全面入侵",
+        "month_start": 60,
+        "description": "相枢大举入侵，天下大乱",
+        "effects": {"encounter_rate": 1.5, "danger_level": 1.5, "npc_panic": 0.3}
+      }
+    ]
+  }
+}

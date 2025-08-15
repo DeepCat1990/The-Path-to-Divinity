@@ -10,8 +10,13 @@
     "initial_stats": {
       "health": 100,
       "mana": 50,
-      "lifespan": 80,
+      "lifespan": 600,
       "age": 16
+    },
+    "taiwu_attributes": {
+      "stance": "neutral",
+      "birth_month": 1,
+      "birth_year": 1
     },
     "growth_rates": {
       "health_per_constitution": 10,

@@ -1,0 +1,70 @@
+{
+  "npc_templates": {
+    "wandering_cultivator": {
+      "name_pool": ["张三丰", "李逍遥", "王重阳", "林青霞", "赵敏"],
+      "base_attributes": {
+        "constitution": [4, 8],
+        "comprehension": [5, 9],
+        "charm": [3, 7],
+        "luck": [3, 8],
+        "spiritual_root": [2, 4]
+      },
+      "initial_stats": {
+        "health": 120,
+        "mana": 60,
+        "age_range": [20, 40],
+        "power_range": [15, 35]
+      },
+      "behavior": {
+        "train_probability": 0.6,
+        "adventure_probability": 0.3,
+        "interact_probability": 0.1
+      },
+      "personality": "独行修士，偶尔与人交流修炼心得"
+    },
+    "sect_disciple": {
+      "name_pool": ["陈浩南", "小龙女", "杨过", "郭靖", "黄蓉"],
+      "base_attributes": {
+        "constitution": [5, 9],
+        "comprehension": [6, 10],
+        "charm": [4, 8],
+        "luck": [4, 7],
+        "spiritual_root": [3, 5]
+      },
+      "initial_stats": {
+        "health": 100,
+        "mana": 80,
+        "age_range": [18, 30],
+        "power_range": [20, 50]
+      },
+      "behavior": {
+        "train_probability": 0.7,
+        "adventure_probability": 0.2,
+        "interact_probability": 0.1
+      },
+      "personality": "门派弟子，热衷于修炼和切磋"
+    },
+    "mysterious_elder": {
+      "name_pool": ["无名老者", "神秘前辈", "隐世高人", "仙风道骨", "白发老翁"],
+      "base_attributes": {
+        "constitution": [8, 12],
+        "comprehension": [10, 15],
+        "charm": [6, 10],
+        "luck": [7, 12],
+        "spiritual_root": [4, 6]
+      },
+      "initial_stats": {
+        "health": 200,
+        "mana": 150,
+        "age_range": [60, 100],
+        "power_range": [80, 150]
+      },
+      "behavior": {
+        "train_probability": 0.4,
+        "adventure_probability": 0.1,
+        "interact_probability": 0.5
+      },
+      "personality": "神秘长者，喜欢指点后辈，偶尔传授秘籍"
+    }
+  }
+}
