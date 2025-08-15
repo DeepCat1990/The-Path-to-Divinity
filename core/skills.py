@@ -11,6 +11,14 @@ class SkillManager:
         available = []
         all_skills = {**self.skills_data["physical_skills"], **self.skills_data["spell_skills"]}
         
+        # 加载门派技能
+        try:
+            with open("data/sects.json", "r", encoding="utf-8") as f:
+                sects_data = json.load(f)
+                all_skills.update(sects_data["sect_skills"])
+        except:
+            pass
+        
         for skill_id, skill in all_skills.items():
             if (skill_id not in self.learned_skills and 
                 character_power >= skill["power_requirement"]):
@@ -29,6 +37,15 @@ class SkillManager:
     def get_learned_skills(self):
         result = []
         all_skills = {**self.skills_data["physical_skills"], **self.skills_data["spell_skills"]}
+        
+        # 加载门派技能
+        try:
+            with open("data/sects.json", "r", encoding="utf-8") as f:
+                sects_data = json.load(f)
+                all_skills.update(sects_data["sect_skills"])
+        except:
+            pass
+            
         for skill_id in self.learned_skills:
             if skill_id in all_skills:
                 result.append((skill_id, all_skills[skill_id]))
@@ -38,6 +55,14 @@ class SkillManager:
         physical_attack = 0
         spell_attack = 0
         all_skills = {**self.skills_data["physical_skills"], **self.skills_data["spell_skills"]}
+        
+        # 加载门派技能
+        try:
+            with open("data/sects.json", "r", encoding="utf-8") as f:
+                sects_data = json.load(f)
+                all_skills.update(sects_data["sect_skills"])
+        except:
+            pass
         
         for skill_id in self.learned_skills:
             if skill_id in all_skills:

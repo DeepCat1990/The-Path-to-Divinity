@@ -1,0 +1,36 @@
+{
+  "player_template": {
+    "base_attributes": {
+      "constitution": [3, 10],
+      "comprehension": [3, 10], 
+      "charm": [3, 10],
+      "luck": [3, 10],
+      "spiritual_root": [1, 5]
+    },
+    "initial_stats": {
+      "health": 100,
+      "mana": 50,
+      "lifespan": 80,
+      "age": 16
+    },
+    "growth_rates": {
+      "health_per_constitution": 10,
+      "mana_per_comprehension": 8,
+      "lifespan_per_realm": 50
+    }
+  },
+  "npc_templates": {
+    "sect_elder": {
+      "constitution": [8, 12],
+      "comprehension": [9, 15],
+      "charm": [6, 10],
+      "realm_range": ["golden_core", "nascent_soul"]
+    },
+    "demonic_cultivator": {
+      "constitution": [5, 8],
+      "comprehension": [7, 12],
+      "charm": [3, 6],
+      "special_traits": ["bloodthirsty", "soul_devourer"]
+    }
+  }
+}

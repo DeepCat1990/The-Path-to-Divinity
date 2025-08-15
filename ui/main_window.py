@@ -11,8 +11,8 @@ class MainWindow(QMainWindow):
         self.setup_events()
         
     def setup_ui(self):
-        self.setWindowTitle("修仙之路")
-        self.setFixedSize(600, 560)
+        self.setWindowTitle("The Path")
+        self.setFixedSize(600, 580)
         
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -73,6 +73,11 @@ class MainWindow(QMainWindow):
         bars_layout.addWidget(self.mana_bar)
         layout.addLayout(bars_layout)
         
+        # 门派信息
+        self.sect_label = QLabel("门派: 无")
+        self.sect_label.setStyleSheet("color: #cc0066; font-weight: bold;")
+        layout.addWidget(self.sect_label)
+        
         # 技能显示
         self.skills_label = QLabel("已学技能: 无")
         self.skills_label.setStyleSheet("color: #0066cc; font-weight: bold;")
@@ -100,6 +105,11 @@ class MainWindow(QMainWindow):
         self.remaining_time = 0
         self.current_action = None
         
+        # 游戏主循环定时器
+        self.game_timer = QTimer()
+        self.game_timer.timeout.connect(self.game.update)
+        self.game_timer.start(100)  # 100ms更新一次
+        
         # 消息区域
         self.message_area = QTextEdit()
         self.message_area.setReadOnly(True)
@@ -110,6 +120,7 @@ class MainWindow(QMainWindow):
         event_bus.subscribe("message", self.add_message)
         event_bus.subscribe("day_changed", self.update_day)
         event_bus.subscribe("skill_learned", self.update_skills)
+        event_bus.subscribe("sect_joined", self.update_sect)
         
     def update_character_info(self, character_data):
         self.power_label.setText(f"修为: {character_data['power']}")
@@ -188,3 +199,13 @@ class MainWindow(QMainWindow):
         char.physical_attack = 5 + physical
         char.spell_attack = spell
         event_bus.emit("character_updated", char.__dict__)
+        
+    def closeEvent(self, event):
+        """窗口关闭事件"""
+        from ..world_manager import world_manager
+        world_manager.stop()
+        event.accept()
+        
+    def update_sect(self, sect_data):
+        sect = sect_data["sect"]
+        self.sect_label.setText(f"门派: {sect['name']} ({sect['type']})")

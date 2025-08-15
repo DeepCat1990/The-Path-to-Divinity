@@ -1,0 +1,68 @@
+{
+  "quests": {
+    "first_cultivation": {
+      "id": "first_cultivation",
+      "name": "初入修仙",
+      "type": "main",
+      "description": "开始你的修仙之路",
+      "objectives": [
+        {
+          "type": "learn_gongfa",
+          "target": "basic_qi_refining",
+          "description": "学会基础练气诀"
+        },
+        {
+          "type": "reach_level",
+          "target": 3,
+          "description": "将练气诀修炼到第3层"
+        }
+      ],
+      "rewards": {
+        "experience": 100,
+        "items": [{"id": "qi_gathering_pill", "count": 5}],
+        "unlock_quest": "sect_recruitment"
+      }
+    },
+    "sect_recruitment": {
+      "id": "sect_recruitment",
+      "name": "门派招募",
+      "type": "main",
+      "description": "寻找合适的门派加入",
+      "prerequisites": ["first_cultivation"],
+      "objectives": [
+        {
+          "type": "join_sect",
+          "description": "加入任意门派"
+        },
+        {
+          "type": "learn_sect_skill",
+          "description": "学会一门门派技能"
+        }
+      ],
+      "rewards": {
+        "experience": 200,
+        "items": [{"id": "spirit_stone", "count": 100}]
+      }
+    },
+    "herb_gathering": {
+      "id": "herb_gathering",
+      "name": "采药任务",
+      "type": "side",
+      "repeatable": true,
+      "description": "为门派采集灵药",
+      "objectives": [
+        {
+          "type": "collect_item",
+          "target": "spirit_herb",
+          "count": 10,
+          "description": "采集10株灵草"
+        }
+      ],
+      "rewards": {
+        "experience": 50,
+        "items": [{"id": "qi_gathering_pill", "count": 2}],
+        "sect_contribution": 10
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "cultivation_methods": {
+    "basic_qi_refining": {
+      "id": "basic_qi_refining",
+      "name": "基础练气诀",
+      "type": "foundation",
+      "max_level": 9,
+      "description": "最基础的练气功法，人人可修",
+      "learning_requirements": {
+        "comprehension": 3,
+        "spiritual_root": 1
+      },
+      "level_effects": {
+        "1": {"mana": 10, "mana_regen": 1},
+        "3": {"mana": 20, "unlock_spells": ["spirit_missile"]},
+        "6": {"mana": 30, "breakthrough_chance": 0.1},
+        "9": {"mana": 50, "realm_breakthrough": "qi_condensation"}
+      }
+    },
+    "purple_cloud_scripture": {
+      "id": "purple_cloud_scripture",
+      "name": "紫霞神功",
+      "type": "advanced",
+      "max_level": 12,
+      "description": "华山派镇派神功，内力深厚绵长",
+      "learning_requirements": {
+        "comprehension": 7,
+        "spiritual_root": 3,
+        "sect": "huashan"
+      },
+      "level_effects": {
+        "1": {"mana": 20, "mana_regen": 2},
+        "4": {"mana": 40, "unlock_spells": ["purple_qi_shield"]},
+        "8": {"mana": 80, "special_ability": "qi_burst"},
+        "12": {"mana": 150, "realm_breakthrough": "foundation_establishment"}
+      }
+    },
+    "nine_yang_divine_skill": {
+      "id": "nine_yang_divine_skill", 
+      "name": "九阳神功",
+      "type": "legendary",
+      "max_level": 9,
+      "description": "至阳至刚的绝世神功，练成后百毒不侵",
+      "learning_requirements": {
+        "comprehension": 9,
+        "spiritual_root": 4,
+        "special_condition": "ice_fire_trial"
+      },
+      "level_effects": {
+        "1": {"health": 50, "poison_immunity": 0.3},
+        "3": {"health": 100, "fire_damage_bonus": 1.5},
+        "6": {"health": 200, "auto_heal": 5},
+        "9": {"health": 500, "invulnerability": 3}
+      }
+    }
+  }
+}

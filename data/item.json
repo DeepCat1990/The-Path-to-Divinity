@@ -1,0 +1,82 @@
+{
+  "items": {
+    "qi_gathering_pill": {
+      "id": "qi_gathering_pill",
+      "name": "聚气丹",
+      "type": "consumable",
+      "rarity": "common",
+      "stack_limit": 99,
+      "effects": {
+        "mana_restore": 30,
+        "duration": "instant"
+      },
+      "description": "恢复灵力的基础丹药"
+    },
+    "foundation_pill": {
+      "id": "foundation_pill", 
+      "name": "筑基丹",
+      "type": "consumable",
+      "rarity": "rare",
+      "stack_limit": 10,
+      "effects": {
+        "breakthrough_chance": 0.3,
+        "realm_requirement": "qi_condensation_peak"
+      },
+      "description": "助人突破筑基境界的珍贵丹药"
+    },
+    "spirit_stone": {
+      "id": "spirit_stone",
+      "name": "灵石",
+      "type": "currency",
+      "rarity": "common", 
+      "stack_limit": 9999,
+      "effects": {
+        "currency_value": 1
+      },
+      "description": "修仙界通用货币，蕴含纯净灵力"
+    },
+    "flying_sword": {
+      "id": "flying_sword",
+      "name": "飞剑",
+      "type": "weapon",
+      "rarity": "uncommon",
+      "stack_limit": 1,
+      "equipment_slot": "weapon",
+      "effects": {
+        "attack_power": 25,
+        "spell_power": 15,
+        "special": "can_fly"
+      },
+      "description": "可御空飞行的法器飞剑"
+    },
+    "protective_robe": {
+      "id": "protective_robe",
+      "name": "护体法袍",
+      "type": "armor",
+      "rarity": "uncommon",
+      "stack_limit": 1,
+      "equipment_slot": "chest",
+      "effects": {
+        "defense": 20,
+        "mana_bonus": 30,
+        "resistance": {"fire": 0.2, "ice": 0.2}
+      },
+      "description": "蕴含防护法阵的修士法袍"
+    },
+    "thousand_year_ginseng": {
+      "id": "thousand_year_ginseng",
+      "name": "千年人参",
+      "type": "material",
+      "rarity": "legendary",
+      "stack_limit": 5,
+      "effects": {
+        "alchemy_ingredient": true,
+        "direct_use": {
+          "health_bonus": 100,
+          "lifespan_bonus": 10
+        }
+      },
+      "description": "千年灵药，可直接服用或炼制丹药"
+    }
+  }
+}

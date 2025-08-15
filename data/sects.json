@@ -1,0 +1,157 @@
+{
+  "sects": {
+    "qingyun": {
+      "name": "青云门",
+      "type": "正派",
+      "specialty": "剑修",
+      "description": "天下第一剑修门派，以御剑术闻名于世，门下弟子个个剑气纵横。",
+      "inner_skill": "太极玄清道",
+      "bonus": {
+        "spell_attack": 1.2,
+        "mana_regen": 1.3
+      },
+      "skills": ["qingyun_sword", "divine_sword", "immortal_sword_control"],
+      "entry_requirement": {
+        "power": 20,
+        "talent": 6
+      }
+    },
+    "tianyin": {
+      "name": "天音寺",
+      "type": "正派",
+      "specialty": "佛修",
+      "description": "佛门圣地，以慈悲为怀，金刚不坏之身和大慈大悲咒威震天下。",
+      "inner_skill": "大梵般若",
+      "bonus": {
+        "physical_defense": 1.5,
+        "health_regen": 1.4
+      },
+      "skills": ["vajra_body", "compassion_mantra", "buddha_palm"],
+      "entry_requirement": {
+        "power": 15,
+        "talent": 5
+      }
+    },
+    "fenxiang": {
+      "name": "焚香谷",
+      "type": "正派",
+      "specialty": "火修",
+      "description": "南疆火系修炼圣地，擅长炼丹和火系法术，谷中终年香火不断。",
+      "inner_skill": "焚香玉册",
+      "bonus": {
+        "fire_damage": 1.4,
+        "alchemy_skill": 1.3
+      },
+      "skills": ["burning_incense", "fire_dragon", "phoenix_dance"],
+      "entry_requirement": {
+        "power": 18,
+        "talent": 5
+      }
+    },
+    "hehuan": {
+      "name": "合欢派",
+      "type": "魔道",
+      "specialty": "魅惑",
+      "description": "魔道门派，修炼媚功和毒术，以美色和毒功著称，令正道闻风丧胆。",
+      "inner_skill": "合欢宝鉴",
+      "bonus": {
+        "charm_effect": 1.6,
+        "poison_damage": 1.3
+      },
+      "skills": ["charm_technique", "poison_mist", "soul_drain"],
+      "entry_requirement": {
+        "power": 12,
+        "talent": 4
+      }
+    },
+    "wandu": {
+      "name": "万毒门",
+      "type": "魔道",
+      "specialty": "毒修",
+      "description": "天下第一毒门，门中弟子个个身怀剧毒，一招一式皆带毒性。",
+      "inner_skill": "万毒心经",
+      "bonus": {
+        "poison_immunity": 1.0,
+        "poison_damage": 1.8
+      },
+      "skills": ["thousand_poison", "venom_palm", "toxic_cloud"],
+      "entry_requirement": {
+        "power": 10,
+        "talent": 3
+      }
+    }
+  },
+  "sect_skills": {
+    "qingyun_sword": {
+      "name": "青云剑诀",
+      "type": "spell",
+      "sect": "qingyun",
+      "realm": "筑基",
+      "power_requirement": 40,
+      "spell_attack": 50,
+      "mana_cost": 20,
+      "description": "青云门入门剑法，剑气如虹，可御剑伤敌于百步之外。"
+    },
+    "divine_sword": {
+      "name": "神剑御雷真诀",
+      "type": "spell",
+      "sect": "qingyun",
+      "realm": "结丹",
+      "power_requirement": 100,
+      "spell_attack": 120,
+      "mana_cost": 40,
+      "description": "青云门镇派绝学，御剑引雷，威力无穷，可斩妖除魔。"
+    },
+    "vajra_body": {
+      "name": "金刚不坏身",
+      "type": "physical",
+      "sect": "tianyin",
+      "realm": "筑基",
+      "power_requirement": 35,
+      "physical_defense": 30,
+      "health_bonus": 50,
+      "description": "天音寺护体神功，修成后肉身如金刚，刀枪不入。"
+    },
+    "compassion_mantra": {
+      "name": "大慈大悲咒",
+      "type": "spell",
+      "sect": "tianyin",
+      "realm": "结丹",
+      "power_requirement": 80,
+      "healing_power": 80,
+      "mana_cost": 30,
+      "description": "天音寺至高心法，可治疗伤势，净化心魔。"
+    },
+    "burning_incense": {
+      "name": "焚香决",
+      "type": "spell",
+      "sect": "fenxiang",
+      "realm": "练气",
+      "power_requirement": 25,
+      "spell_attack": 35,
+      "fire_damage": 1.5,
+      "mana_cost": 15,
+      "description": "焚香谷基础火系法术，香火燃烧，烈焰滔天。"
+    },
+    "charm_technique": {
+      "name": "媚功",
+      "type": "spell",
+      "sect": "hehuan",
+      "realm": "练气",
+      "power_requirement": 20,
+      "charm_power": 40,
+      "mana_cost": 12,
+      "description": "合欢派独门秘技，可魅惑敌人心智，令其失去战斗力。"
+    },
+    "thousand_poison": {
+      "name": "万毒手",
+      "type": "physical",
+      "sect": "wandu",
+      "realm": "练气",
+      "power_requirement": 15,
+      "physical_attack": 25,
+      "poison_damage": 20,
+      "description": "万毒门入门功夫，掌中带毒，中者必死无疑。"
+    }
+  }
+}

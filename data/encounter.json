@@ -1,0 +1,137 @@
+{
+  "encounters": {
+    "mysterious_cave": {
+      "id": "mysterious_cave",
+      "name": "神秘洞穴",
+      "type": "exploration",
+      "trigger_conditions": {
+        "location": "mountain",
+        "probability": 0.15,
+        "requirements": {"realm": "qi_condensation"}
+      },
+      "description": "你在山中发现了一个散发着灵气的洞穴",
+      "choices": [
+        {
+          "id": "enter_cave",
+          "text": "进入洞穴探索",
+          "requirements": {"courage": 5},
+          "outcomes": [
+            {
+              "probability": 0.6,
+              "result": "treasure_found",
+              "rewards": {"items": [{"id": "spirit_stone", "count": 50}]}
+            },
+            {
+              "probability": 0.3,
+              "result": "monster_encounter",
+              "combat": {"enemy": "cave_beast", "level": 3}
+            },
+            {
+              "probability": 0.1,
+              "result": "ancient_inheritance",
+              "rewards": {"gongfa": "mysterious_technique"}
+            }
+          ]
+        },
+        {
+          "id": "leave_cave",
+          "text": "谨慎离开",
+          "outcomes": [
+            {
+              "probability": 1.0,
+              "result": "safe_retreat",
+              "rewards": {"experience": 10}
+            }
+          ]
+        }
+      ]
+    },
+    "wandering_merchant": {
+      "id": "wandering_merchant",
+      "name": "游商",
+      "type": "trade",
+      "trigger_conditions": {
+        "location": "any",
+        "probability": 0.1,
+        "time_restriction": "day"
+      },
+      "description": "你遇到了一位神秘的游商",
+      "choices": [
+        {
+          "id": "browse_goods",
+          "text": "查看商品",
+          "outcomes": [
+            {
+              "probability": 1.0,
+              "result": "open_shop",
+              "shop_items": [
+                {"id": "qi_gathering_pill", "price": 10, "stock": 20},
+                {"id": "flying_sword", "price": 500, "stock": 1},
+                {"id": "mysterious_map", "price": 200, "stock": 1}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ignore_merchant",
+          "text": "无视离开",
+          "outcomes": [
+            {
+              "probability": 1.0,
+              "result": "continue_journey"
+            }
+          ]
+        }
+      ]
+    },
+    "demonic_cultivator_ambush": {
+      "id": "demonic_cultivator_ambush",
+      "name": "魔修伏击",
+      "type": "combat",
+      "trigger_conditions": {
+        "location": "wilderness",
+        "probability": 0.08,
+        "requirements": {"realm_min": "qi_condensation"}
+      },
+      "description": "一名魔修突然从暗处袭击你！",
+      "choices": [
+        {
+          "id": "fight_back",
+          "text": "奋力反击",
+          "outcomes": [
+            {
+              "probability": 0.7,
+              "result": "victory",
+              "rewards": {
+                "experience": 80,
+                "items": [{"id": "demonic_core", "count": 1}]
+              }
+            },
+            {
+              "probability": 0.3,
+              "result": "defeat",
+              "penalties": {"health": -30, "items_lost": 0.1}
+            }
+          ]
+        },
+        {
+          "id": "attempt_escape",
+          "text": "尝试逃跑",
+          "requirements": {"agility": 6},
+          "outcomes": [
+            {
+              "probability": 0.8,
+              "result": "successful_escape",
+              "rewards": {"experience": 20}
+            },
+            {
+              "probability": 0.2,
+              "result": "caught_and_injured",
+              "penalties": {"health": -20}
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

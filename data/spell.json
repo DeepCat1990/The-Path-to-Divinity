@@ -1,0 +1,72 @@
+{
+  "spells": {
+    "spirit_missile": {
+      "id": "spirit_missile",
+      "name": "灵力弹",
+      "type": "attack",
+      "element": "neutral",
+      "cost": {"mana": 8},
+      "cooldown": 0,
+      "effects": {
+        "damage": 15,
+        "range": "single_target"
+      },
+      "description": "凝聚灵力形成弹丸攻击敌人"
+    },
+    "fire_snake": {
+      "id": "fire_snake",
+      "name": "火蛇术",
+      "type": "attack", 
+      "element": "fire",
+      "cost": {"mana": 15},
+      "cooldown": 1,
+      "effects": {
+        "damage": 25,
+        "burn_duration": 3,
+        "range": "single_target"
+      },
+      "description": "召唤火蛇攻击敌人，造成持续灼烧"
+    },
+    "healing_light": {
+      "id": "healing_light",
+      "name": "治疗术",
+      "type": "heal",
+      "element": "light",
+      "cost": {"mana": 12},
+      "cooldown": 2,
+      "effects": {
+        "heal_amount": 30,
+        "range": "self_or_ally"
+      },
+      "description": "召唤圣光治疗伤势"
+    },
+    "ice_prison": {
+      "id": "ice_prison",
+      "name": "玄冰牢",
+      "type": "control",
+      "element": "ice",
+      "cost": {"mana": 20},
+      "cooldown": 3,
+      "effects": {
+        "damage": 20,
+        "freeze_duration": 2,
+        "range": "single_target"
+      },
+      "description": "凝结玄冰困住敌人"
+    },
+    "sword_rain": {
+      "id": "sword_rain",
+      "name": "万剑诀",
+      "type": "attack",
+      "element": "metal",
+      "cost": {"mana": 40, "mental_power": 10},
+      "cooldown": 5,
+      "effects": {
+        "damage": 80,
+        "hit_count": 5,
+        "range": "area"
+      },
+      "description": "御剑如雨，万剑齐发攻击范围内所有敌人"
+    }
+  }
+}
