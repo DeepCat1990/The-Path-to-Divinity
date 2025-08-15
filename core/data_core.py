@@ -44,7 +44,10 @@ class DataCore:
     
     def get_character_template(self, template_type: str = 'player_template') -> Dict:
         """获取角色模板"""
-        return self.get_data('character_template', template_type)
+        data = self.get_data('character_template')
+        if data and template_type in data:
+            return data[template_type]
+        return None
     
     def get_gongfa(self, gongfa_id: str = None) -> Any:
         """获取功法数据"""

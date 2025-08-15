@@ -53,6 +53,12 @@ class WorldManager:
         
         # 从数据核心获取角色模板
         template = data_core.get_character_template()
+        if not template:
+            # 使用默认模板
+            template = {
+                "base_attributes": {"constitution": [3, 10]},
+                "initial_stats": {"health": 100, "mana": 50, "lifespan": 80, "age": 16}
+            }
         base_attrs = template["base_attributes"]
         initial_stats = template["initial_stats"]
         
