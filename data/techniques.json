@@ -1,0 +1,246 @@
+{
+  "combat_techniques": {
+    "sword_techniques": {
+      "basic_sword": {
+        "name": "基础剑法",
+        "grade": "九品",
+        "type": "sword",
+        "requirements": {
+          "根骨": 3,
+          "灵敏": 3
+        },
+        "effects": {
+          "attack_power": 15,
+          "accuracy": 0.8
+        },
+        "learning_difficulty": 1,
+        "description": "最基础的剑法，招式简单实用"
+      },
+      "qingfeng_sword": {
+        "name": "清风剑法",
+        "grade": "七品",
+        "type": "sword",
+        "requirements": {
+          "根骨": 5,
+          "灵敏": 6,
+          "悟性": 4
+        },
+        "effects": {
+          "attack_power": 35,
+          "accuracy": 0.85,
+          "speed_bonus": 0.2
+        },
+        "learning_difficulty": 3,
+        "description": "轻灵飘逸的剑法，如清风拂面"
+      },
+      "taiji_sword": {
+        "name": "太极剑法",
+        "grade": "五品",
+        "type": "sword",
+        "sect": "wudang",
+        "requirements": {
+          "根骨": 7,
+          "悟性": 8,
+          "定力": 6
+        },
+        "effects": {
+          "attack_power": 55,
+          "accuracy": 0.9,
+          "defense_bonus": 0.3,
+          "internal_power_bonus": 0.2
+        },
+        "learning_difficulty": 5,
+        "description": "武当派绝学，以柔克刚，四两拨千斤"
+      }
+    },
+    "palm_techniques": {
+      "iron_palm": {
+        "name": "铁砂掌",
+        "grade": "八品",
+        "type": "palm",
+        "requirements": {
+          "膂力": 5,
+          "体质": 4
+        },
+        "effects": {
+          "attack_power": 25,
+          "armor_penetration": 0.2
+        },
+        "learning_difficulty": 2,
+        "description": "刚猛有力的掌法，可碎金裂石"
+      },
+      "eighteen_dragon_palms": {
+        "name": "降龙十八掌",
+        "grade": "三品",
+        "type": "palm",
+        "sect": "beggar",
+        "requirements": {
+          "膂力": 8,
+          "根骨": 7,
+          "悟性": 6
+        },
+        "effects": {
+          "attack_power": 80,
+          "accuracy": 0.85,
+          "critical_chance": 0.15,
+          "area_damage": true
+        },
+        "learning_difficulty": 7,
+        "description": "丐帮镇帮绝学，掌力雄浑，威震天下"
+      }
+    },
+    "internal_techniques": {
+      "basic_internal": {
+        "name": "基础内功",
+        "grade": "九品",
+        "type": "internal",
+        "requirements": {
+          "根骨": 2,
+          "悟性": 2
+        },
+        "effects": {
+          "max_internal_power": 100,
+          "recovery_rate": 1.0
+        },
+        "learning_difficulty": 1,
+        "description": "最基础的内功心法"
+      },
+      "nine_yang_divine_skill": {
+        "name": "九阳神功",
+        "grade": "一品",
+        "type": "internal",
+        "requirements": {
+          "根骨": 9,
+          "悟性": 9,
+          "定力": 8
+        },
+        "effects": {
+          "max_internal_power": 500,
+          "recovery_rate": 3.0,
+          "poison_immunity": true,
+          "cold_immunity": true,
+          "healing_bonus": 2.0
+        },
+        "learning_difficulty": 10,
+        "description": "至阳至刚的绝世神功，练成后百毒不侵"
+      }
+    }
+  },
+  "life_skills": {
+    "medicine": {
+      "basic_medicine": {
+        "name": "基础医术",
+        "grade": "九品",
+        "type": "medicine",
+        "requirements": {
+          "悟性": 3,
+          "魅力": 2
+        },
+        "effects": {
+          "healing_efficiency": 1.2,
+          "poison_cure_chance": 0.3
+        },
+        "learning_difficulty": 2,
+        "description": "基础的医疗技能，可治疗简单伤病"
+      },
+      "divine_medicine": {
+        "name": "神医术",
+        "grade": "二品",
+        "type": "medicine",
+        "requirements": {
+          "悟性": 8,
+          "魅力": 6,
+          "定力": 5
+        },
+        "effects": {
+          "healing_efficiency": 3.0,
+          "poison_cure_chance": 0.9,
+          "resurrection_chance": 0.1
+        },
+        "learning_difficulty": 8,
+        "description": "传说中的神医之术，可起死回生"
+      }
+    },
+    "poison": {
+      "basic_poison": {
+        "name": "基础毒术",
+        "grade": "八品",
+        "type": "poison",
+        "requirements": {
+          "悟性": 4,
+          "灵敏": 3
+        },
+        "effects": {
+          "poison_damage": 10,
+          "poison_duration": 3
+        },
+        "learning_difficulty": 3,
+        "description": "基础的用毒技巧"
+      },
+      "thousand_poison_skill": {
+        "name": "万毒神功",
+        "grade": "二品",
+        "type": "poison",
+        "sect": "wudu",
+        "requirements": {
+          "悟性": 8,
+          "灵敏": 7,
+          "定力": 6
+        },
+        "effects": {
+          "poison_damage": 50,
+          "poison_duration": 10,
+          "poison_immunity": true,
+          "multiple_poisons": true
+        },
+        "learning_difficulty": 9,
+        "description": "万毒门至高绝学，集天下毒术之大成"
+      }
+    },
+    "crafting": {
+      "basic_forging": {
+        "name": "基础锻造",
+        "grade": "九品",
+        "type": "forging",
+        "requirements": {
+          "膂力": 4,
+          "体质": 3
+        },
+        "effects": {
+          "weapon_quality_bonus": 0.1,
+          "durability_bonus": 0.2
+        },
+        "learning_difficulty": 2,
+        "description": "基础的武器锻造技术"
+      },
+      "divine_forging": {
+        "name": "神工锻造",
+        "grade": "一品",
+        "type": "forging",
+        "requirements": {
+          "膂力": 8,
+          "体质": 7,
+          "悟性": 6
+        },
+        "effects": {
+          "weapon_quality_bonus": 0.5,
+          "durability_bonus": 1.0,
+          "special_effects_chance": 0.3
+        },
+        "learning_difficulty": 9,
+        "description": "传说中的神工技艺，可锻造神兵利器"
+      }
+    }
+  },
+  "technique_grades": {
+    "一品": {"power_multiplier": 3.0, "rarity": "legendary"},
+    "二品": {"power_multiplier": 2.5, "rarity": "epic"},
+    "三品": {"power_multiplier": 2.0, "rarity": "rare"},
+    "四品": {"power_multiplier": 1.8, "rarity": "rare"},
+    "五品": {"power_multiplier": 1.6, "rarity": "uncommon"},
+    "六品": {"power_multiplier": 1.4, "rarity": "uncommon"},
+    "七品": {"power_multiplier": 1.2, "rarity": "common"},
+    "八品": {"power_multiplier": 1.1, "rarity": "common"},
+    "九品": {"power_multiplier": 1.0, "rarity": "common"}
+  }
+}

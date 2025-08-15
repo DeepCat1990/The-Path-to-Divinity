@@ -1,0 +1,79 @@
+{
+  "player_template": {
+    "core_attributes": {
+      "constitution": [3, 10],
+      "comprehension": [3, 10], 
+      "charm": [3, 10],
+      "luck": [3, 10],
+      "spiritual_root": [1, 5]
+    },
+    "taiwu_attributes": {
+      "膂力": [3, 10],
+      "体质": [3, 10],
+      "灵敏": [3, 10],
+      "根骨": [3, 10],
+      "悟性": [3, 10],
+      "定力": [3, 10],
+      "福缘": [3, 10],
+      "魅力": [3, 10]
+    },
+    "initial_stats": {
+      "health": 100,
+      "mana": 50,
+      "lifespan": 600,
+      "age": 16,
+      "mood": 50,
+      "reputation": 0,
+      "sect_contribution": 0
+    },
+    "stance_system": {
+      "initial_stance": "neutral",
+      "stance_points": {
+        "righteous": 0,
+        "benevolent": 0,
+        "neutral": 50,
+        "rebellious": 0,
+        "selfish": 0
+      }
+    },
+    "birth_info": {
+      "birth_month": 1,
+      "birth_year": 1,
+      "birth_region": "central_plains"
+    },
+    "growth_rates": {
+      "health_per_constitution": 10,
+      "mana_per_comprehension": 8,
+      "lifespan_per_realm": 50,
+      "mood_decay_rate": 0.1
+    }
+  },
+  "npc_templates": {
+    "sect_elder": {
+      "taiwu_attributes": {
+        "膂力": [7, 12],
+        "体质": [8, 12],
+        "灵敏": [6, 10],
+        "根骨": [8, 12],
+        "悟性": [9, 15],
+        "定力": [8, 12],
+        "福缘": [6, 10],
+        "魅力": [6, 10]
+      },
+      "stance_preference": ["righteous", "benevolent"]
+    },
+    "demonic_cultivator": {
+      "taiwu_attributes": {
+        "膂力": [6, 10],
+        "体质": [5, 8],
+        "灵敏": [7, 11],
+        "根骨": [6, 9],
+        "悟性": [7, 12],
+        "定力": [4, 7],
+        "福缘": [3, 6],
+        "魅力": [3, 6]
+      },
+      "stance_preference": ["selfish", "rebellious"]
+    }
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "seasonal_encounters": {
+    "spring": [
+      {
+        "id": "spring_herb_gathering",
+        "name": "春日采药",
+        "probability": 0.3,
+        "description": "春回大地，正是采集灵药的好时节",
+        "trigger_conditions": {
+          "month": [1, 2, 3],
+          "location": ["mountain", "forest"]
+        },
+        "choices": [
+          {
+            "text": "仔细搜寻灵药",
+            "requirements": {"悟性": 4},
+            "outcomes": [
+              {
+                "probability": 0.7,
+                "result": "找到了珍贵的春草",
+                "rewards": {"items": [{"id": "spring_herb", "count": 3}]}
+              },
+              {
+                "probability": 0.3,
+                "result": "一无所获",
+                "rewards": {"experience": 5}
+              }
+            ]
+          },
+          {
+            "text": "放弃搜寻",
+            "outcomes": [
+              {
+                "probability": 1.0,
+                "result": "继续前行",
+                "rewards": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "spring_sect_recruitment",
+        "name": "门派招收弟子",
+        "probability": 0.15,
+        "description": "各大门派在春季招收新弟子",
+        "trigger_conditions": {
+          "month": [2, 3],
+          "player_sect": null
+        },
+        "choices": [
+          {
+            "text": "参加考核",
+            "requirements": {"根骨": 5, "悟性": 4},
+            "outcomes": [
+              {
+                "probability": 0.6,
+                "result": "通过考核，被门派收录",
+                "rewards": {"sect_join": "random_sect"}
+              },
+              {
+                "probability": 0.4,
+                "result": "考核失败",
+                "rewards": {"experience": 10}
+              }
+            ]
+          },
+          {
+            "text": "观望不参与",
+            "outcomes": [
+              {
+                "probability": 1.0,
+                "result": "错过机会",
+                "rewards": {}
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "summer": [
+      {
+        "id": "summer_martial_tournament",
+        "name": "夏日武林大会",
+        "probability": 0.2,
+        "description": "炎炎夏日，武林中人聚集比武切磋",
+        "trigger_conditions": {
+          "month": [4, 5, 6],
+          "player_power": 30
+        },
+        "choices": [
+          {
+            "text": "参加比武",
+            "requirements": {"膂力": 6, "灵敏": 5},
+            "outcomes": [
+              {
+                "probability": 0.5,
+                "result": "获得胜利，声名远扬",
+                "rewards": {"reputation": 20, "items": [{"id": "martial_trophy", "count": 1}]}
+              },
+              {
+                "probability": 0.3,
+                "result": "败北而归，但有所收获",
+                "rewards": {"experience": 15, "technique_insight": true}
+              },
+              {
+                "probability": 0.2,
+                "result": "重伤败北",
+                "penalties": {"health": -20}
+              }
+            ]
+          },
+          {
+            "text": "观战学习",
+            "outcomes": [
+              {
+                "probability": 1.0,
+                "result": "观摩高手过招，颇有收获",
+                "rewards": {"experience": 8, "technique_insight": true}
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "autumn": [
+      {
+        "id": "autumn_harvest_festival",
+        "name": "秋收庆典",
+        "probability": 0.25,
+        "description": "秋高气爽，各地举办丰收庆典",
+        "trigger_conditions": {
+          "month": [7, 8, 9]
+        },
+        "choices": [
+          {
+            "text": "参与庆典",
+            "outcomes": [
+              {
+                "probability": 0.8,
+                "result": "在庆典中结识朋友",
+                "rewards": {"mood": 10, "social_connections": 1}
+              },
+              {
+                "probability": 0.2,
+                "result": "意外卷入纠纷",
+                "combat": {"enemy_type": "drunk_troublemaker", "difficulty": 2}
+              }
+            ]
+          },
+          {
+            "text": "独自修炼",
+            "outcomes": [
+              {
+                "probability": 1.0,
+                "result": "在宁静中有所感悟",
+                "rewards": {"internal_power": 5, "定力": 1}
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "winter": [
+      {
+        "id": "winter_survival_challenge",
+        "name": "严冬考验",
+        "probability": 0.4,
+        "description": "严寒的冬日考验着修行者的意志",
+        "trigger_conditions": {
+          "month": [10, 11, 12]
+        },
+        "choices": [
+          {
+            "text": "在雪中苦修",
+            "requirements": {"体质": 5, "定力": 4},
+            "outcomes": [
+              {
+                "probability": 0.7,
+                "result": "意志得到磨练",
+                "rewards": {"定力": 2, "体质": 1}
+              },
+              {
+                "probability": 0.3,
+                "result": "不敌严寒，身体受损",
+                "penalties": {"health": -15}
+              }
+            ]
+          },
+          {
+            "text": "寻找温暖的避难所",
+            "outcomes": [
+              {
+                "probability": 0.9,
+                "result": "找到温暖的客栈",
+                "rewards": {"mood": 5}
+              },
+              {
+                "probability": 0.1,
+                "result": "迷失在风雪中",
+                "penalties": {"health": -10}
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "monthly_special_events": {
+    "1": [
+      {
+        "id": "new_year_blessing",
+        "name": "新年祈福",
+        "probability": 0.8,
+        "description": "新年伊始，万象更新",
+        "rewards": {"福缘": 1, "mood": 15}
+      }
+    ],
+    "6": [
+      {
+        "id": "dragon_boat_festival",
+        "name": "端午节",
+        "probability": 0.6,
+        "description": "端午佳节，驱邪避毒",
+        "rewards": {"poison_resistance": 0.1, "health": 10}
+      }
+    ],
+    "8": [
+      {
+        "id": "mid_autumn_festival",
+        "name": "中秋节",
+        "probability": 0.7,
+        "description": "月圆人团圆，思绪万千",
+        "rewards": {"悟性": 1, "mood": 10}
+      }
+    ]
+  },
+  "xiangshu_invasion_events": {
+    "phase_1": [
+      {
+        "id": "strange_phenomena",
+        "name": "异象频现",
+        "probability": 0.3,
+        "description": "天空出现奇异的光芒，预示着不祥",
+        "effects": {
+          "world_unrest": 0.1,
+          "npc_panic": 0.05
+        }
+      }
+    ],
+    "phase_2": [
+      {
+        "id": "xiangshu_scout",
+        "name": "相枢斥候",
+        "probability": 0.4,
+        "description": "发现了相枢的探子在活动",
+        "combat": {
+          "enemy_type": "xiangshu_scout",
+          "difficulty": 4
+        }
+      }
+    ],
+    "phase_3": [
+      {
+        "id": "xiangshu_invasion",
+        "name": "相枢大举入侵",
+        "probability": 0.6,
+        "description": "相枢军队大举入侵，天下大乱",
+        "combat": {
+          "enemy_type": "xiangshu_army",
+          "difficulty": 7
+        }
+      }
+    ]
+  },
+  "stance_based_encounters": {
+    "righteous": [
+      {
+        "id": "help_innocent",
+        "name": "救助无辜",
+        "probability": 0.4,
+        "description": "遇到被恶人欺凌的无辜百姓",
+        "stance_bonus": 1.5
+      }
+    ],
+    "selfish": [
+      {
+        "id": "treasure_opportunity",
+        "name": "夺宝机会",
+        "probability": 0.3,
+        "description": "发现了他人的宝物，可以趁机夺取",
+        "stance_bonus": 1.5
+      }
+    ]
+  }
+}

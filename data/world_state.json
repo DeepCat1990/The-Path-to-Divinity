@@ -1,0 +1,81 @@
+{
+  "global_state": {
+    "current_year": 1,
+    "current_month": 1,
+    "current_day": 1,
+    "total_months_elapsed": 0,
+    "xiangshu_invasion_phase": 0,
+    "world_threat_level": 1.0,
+    "global_modifiers": {
+      "encounter_rate": 1.0,
+      "danger_level": 1.0,
+      "npc_panic_level": 0.0
+    }
+  },
+  "regions": {
+    "central_plains": {
+      "stability": 0.9,
+      "prosperity": 0.8,
+      "sect_influence": {
+        "shaolin": 0.3,
+        "wudang": 0.25,
+        "emei": 0.2
+      },
+      "resource_availability": {
+        "iron_ore": 0.8,
+        "medicinal_herbs": 0.9
+      },
+      "population": 1000000,
+      "recent_events": []
+    },
+    "western_regions": {
+      "stability": 0.7,
+      "prosperity": 0.6,
+      "sect_influence": {
+        "tianshan": 0.4,
+        "kunlun": 0.3
+      },
+      "resource_availability": {
+        "rare_gems": 0.7,
+        "exotic_spices": 0.8
+      },
+      "population": 500000,
+      "recent_events": []
+    },
+    "southern_wilderness": {
+      "stability": 0.6,
+      "prosperity": 0.5,
+      "sect_influence": {
+        "wudu": 0.5,
+        "miao": 0.3
+      },
+      "resource_availability": {
+        "poison_materials": 0.9,
+        "rare_insects": 0.8
+      },
+      "population": 300000,
+      "recent_events": []
+    }
+  },
+  "npc_population": {
+    "total_npcs": 0,
+    "by_region": {
+      "central_plains": 0,
+      "western_regions": 0,
+      "southern_wilderness": 0
+    },
+    "by_stance": {
+      "righteous": 0,
+      "benevolent": 0,
+      "neutral": 0,
+      "rebellious": 0,
+      "selfish": 0
+    }
+  },
+  "seasonal_effects": {
+    "spring": {"growth_rate": 1.2, "encounter_bonus": 0.1},
+    "summer": {"activity_rate": 1.3, "travel_bonus": 0.2},
+    "autumn": {"harvest_bonus": 1.5, "preparation_bonus": 0.1},
+    "winter": {"survival_challenge": 1.2, "indoor_bonus": 0.3}
+  }
+}
