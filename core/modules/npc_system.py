@@ -244,29 +244,57 @@ class NPCSystem:
         if not player_attr:
             return
         
-        player_power = getattr(player_attr, 'power', 20)  # 默认修为
+        player_power = getattr(player_attr, 'power', 20)
         
-        event_bus.emit("message", f"与 {npc_name} 开始切磋...")
+        event_bus.emit("message", f"=== 与 {npc_name} 开始切磋 ===")  
+        event_bus.emit("message", f"你的修为: {player_power}, {npc_name}的修为: {npc_power}")
         
-        # 简单的胜负判定
-        if player_power > npc_power * 1.2:
-            event_bus.emit("message", "你轻松获胜，获得了修炼经验！")
-            event_bus.emit("experience_gained", {
-                "entity_id": self.world_manager.player_entity_id,
-                "amount": random.randint(10, 30)
-            })
-        elif player_power < npc_power * 0.8:
-            event_bus.emit("message", "你败下阵来，但也有所收获。")
-            event_bus.emit("experience_gained", {
-                "entity_id": self.world_manager.player_entity_id,
-                "amount": random.randint(5, 15)
-            })
+        # 模拟战斗过程
+        rounds = random.randint(3, 6)
+        player_damage_taken = 0
+        npc_damage_taken = 0
+        
+        for round_num in range(1, rounds + 1):
+            event_bus.emit("message", f"--- 第{round_num}回合 ---")
+            
+            # 玩家攻击
+            player_attack = random.randint(5, 15) + player_power // 10
+            npc_defense = random.randint(3, 8) + npc_power // 15
+            damage_to_npc = max(1, player_attack - npc_defense)
+            npc_damage_taken += damage_to_npc
+            event_bus.emit("message", f"你对 {npc_name} 造成了 {damage_to_npc} 点伤害")
+            
+            # NPC攻击
+            npc_attack = random.randint(5, 15) + npc_power // 10
+            player_defense = random.randint(3, 8) + player_power // 15
+            damage_to_player = max(1, npc_attack - player_defense)
+            player_damage_taken += damage_to_player
+            event_bus.emit("message", f"{npc_name} 对你造成了 {damage_to_player} 点伤害")
+        
+        # 判定胜负
+        if npc_damage_taken > player_damage_taken:
+            event_bus.emit("message", f"你获得了胜利！")
+            exp_gain = random.randint(15, 30)
+        elif player_damage_taken > npc_damage_taken * 1.5:
+            event_bus.emit("message", f"你败下阵来")
+            exp_gain = random.randint(5, 15)
         else:
-            event_bus.emit("message", "势均力敌，平分秋色。")
-            event_bus.emit("experience_gained", {
-                "entity_id": self.world_manager.player_entity_id,
-                "amount": random.randint(8, 20)
-            })
+            event_bus.emit("message", f"势均力敌")
+            exp_gain = random.randint(10, 20)
+        
+        # 应用伤害（减少伤害避免死亡）
+        actual_damage = min(player_damage_taken // 5, player_attr.health - 5)
+        if actual_damage > 0:
+            player_attr.health -= actual_damage
+            event_bus.emit("message", f"你的生命值减少 {actual_damage} 点")
+        
+        # 经验奖励
+        event_bus.emit("experience_gained", {
+            "entity_id": self.world_manager.player_entity_id,
+            "amount": exp_gain
+        })
+        event_bus.emit("message", f"获得 {exp_gain} 点修炼经验")
+        event_bus.emit("message", "=== 切磋结束 ===")
     
     def _handle_npc_interaction(self, event_data):
         """处理NPC互动事件"""

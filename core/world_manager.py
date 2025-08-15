@@ -120,15 +120,20 @@ class WorldManager:
     
     def _process_daily_events(self):
         """处理每日事件"""
-        # 角色老化
-        entities = self.entity_manager.get_entities_with_components("AttributeComponent")
-        for entity in entities:
-            attr = entity.get_component("AttributeComponent")
-            attr.age += 1
-            
-            # 检查寿命
-            if attr.age >= attr.lifespan:
-                event_bus.emit("character_death", {"entity_id": entity.id})
+        # 角色老化（每30天老化一次）
+        if self.current_day % 30 == 0:
+            entities = self.entity_manager.get_entities_with_components("AttributeComponent")
+            for entity in entities:
+                attr = entity.get_component("AttributeComponent")
+                attr.age += 1
+                
+                # 检查寿命（给予更多缓冲）
+                if attr.age >= attr.lifespan - 10:
+                    if attr.age >= attr.lifespan:
+                        event_bus.emit("character_death", {"entity_id": entity.id})
+                    else:
+                        remaining_years = attr.lifespan - attr.age
+                        event_bus.emit("message", f"你感到寿命将尽，还剩 {remaining_years} 年寿命")
     
     def _handle_spell_cast(self, event_data):
         """处理施法事件"""
