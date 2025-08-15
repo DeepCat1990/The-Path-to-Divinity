@@ -5,6 +5,7 @@ from .skills import SkillManager
 from .sects import SectManager
 from .events import event_bus
 from .world_manager import world_manager
+from .game_engine import game_engine
 
 class Game:
     def __init__(self):
@@ -15,8 +16,8 @@ class Game:
         self.sect_manager = SectManager()
         self.day = 1
         
-        # 启动世界管理器
-        world_manager.start()
+        # 启动游戏引擎
+        game_engine.start()
         self.player_entity_id = world_manager.create_player_entity()
         
     def train(self):
@@ -62,7 +63,19 @@ class Game:
         
     def update(self):
         """更新游戏世界"""
-        world_manager.update()
+        game_engine.update()
+        
+    def get_time_info(self):
+        """获取时间信息"""
+        return game_engine.get_current_time_info()
+        
+    def set_game_speed(self, speed):
+        """设置游戏速度"""
+        game_engine.set_game_speed(speed)
+        
+    def pause_game(self, paused=None):
+        """暂停/继续游戏"""
+        game_engine.pause_game(paused)
         
     def get_sect_info(self):
         return self.sect_manager.get_current_sect_info()

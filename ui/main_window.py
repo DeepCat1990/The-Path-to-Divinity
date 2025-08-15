@@ -19,7 +19,7 @@ class MainWindow(QMainWindow):
         
     def setup_ui(self):
         self.setWindowTitle("The Path to Divinity")
-        self.setFixedSize(700, 680)
+        self.setFixedSize(700, 700)
         
         # 设置初始主题
         self.setStyleSheet(theme_manager.get_stylesheet())
@@ -35,16 +35,22 @@ class MainWindow(QMainWindow):
         # 角色信息面板
         char = self.game.character
         
-        # 回合信息
-        turn_layout = QHBoxLayout()
-        self.day_label = QLabel("第1天")
-        self.day_label.setFont(QFont("Arial", 12, QFont.Bold))
+        # 时间信息
+        time_layout = QHBoxLayout()
+        self.time_label = QLabel("第1年 第1月 第1天")
+        self.time_label.setFont(QFont("Arial", 12, QFont.Bold))
         self.countdown_label = QLabel("")
         self.countdown_label.setStyleSheet("color: #ff6600; font-weight: bold;")
-        turn_layout.addWidget(self.day_label)
-        turn_layout.addStretch()
-        turn_layout.addWidget(self.countdown_label)
-        layout.addLayout(turn_layout)
+        
+        # 游戏速度控制
+        self.speed_label = QLabel("1.0x")
+        self.speed_label.setStyleSheet("color: #0066cc; font-weight: bold;")
+        
+        time_layout.addWidget(self.time_label)
+        time_layout.addStretch()
+        time_layout.addWidget(self.speed_label)
+        time_layout.addWidget(self.countdown_label)
+        layout.addLayout(time_layout)
         
         # 基础属性
         stats_layout = QHBoxLayout()
@@ -133,14 +139,19 @@ class MainWindow(QMainWindow):
         # 功能按钮第二行
         function_button_layout2 = QHBoxLayout()
         self.taiwu_btn = QPushButton("太吾系统")
+        self.pause_btn = QPushButton("暂停")
+        self.speed_btn = QPushButton("加速")
         self.theme_btn = QPushButton("切换主题")
         
         self.taiwu_btn.clicked.connect(self.open_taiwu_window)
+        self.pause_btn.clicked.connect(self.toggle_pause)
+        self.speed_btn.clicked.connect(self.cycle_speed)
         self.theme_btn.clicked.connect(self.toggle_theme)
         
         function_button_layout2.addWidget(self.taiwu_btn)
+        function_button_layout2.addWidget(self.pause_btn)
+        function_button_layout2.addWidget(self.speed_btn)
         function_button_layout2.addWidget(self.theme_btn)
-        function_button_layout2.addStretch()  # 添加弹性空间
         layout.addLayout(function_button_layout2)
         
         # 倒计时器
@@ -173,6 +184,15 @@ class MainWindow(QMainWindow):
         self.sync_timer = QTimer()
         self.sync_timer.timeout.connect(self.sync_character_data)
         self.sync_timer.start(1000)  # 每秒同步一次
+        
+        # 时间更新定时器
+        self.time_timer = QTimer()
+        self.time_timer.timeout.connect(self.update_time_display)
+        self.time_timer.start(500)  # 每0.5秒更新一次
+        
+        # 游戏速度状态
+        self.current_speed_index = 0
+        self.speed_options = [0.5, 1.0, 2.0, 5.0]
         
     def update_character_info(self, character_data):
         self.power_label.setText(f"修为: {character_data['power']}")
@@ -235,7 +255,30 @@ class MainWindow(QMainWindow):
         self.adventure_btn.setEnabled(enabled)
         
     def update_day(self, day):
-        self.day_label.setText(f"第{day}天")
+        # 旧的日期更新方法，保留兼容性
+        pass
+        
+    def update_time_display(self):
+        """更新时间显示"""
+        time_info = self.game.get_time_info()
+        self.time_label.setText(f"第{time_info['year']}年 第{time_info['month']}月 第{time_info['day']}天")
+        self.speed_label.setText(f"{time_info['game_speed']:.1f}x")
+        
+        # 更新暂停按钮文本
+        if time_info['paused']:
+            self.pause_btn.setText("继续")
+        else:
+            self.pause_btn.setText("暂停")
+    
+    def toggle_pause(self):
+        """切换暂停状态"""
+        self.game.pause_game()
+    
+    def cycle_speed(self):
+        """循环切换游戏速度"""
+        self.current_speed_index = (self.current_speed_index + 1) % len(self.speed_options)
+        new_speed = self.speed_options[self.current_speed_index]
+        self.game.set_game_speed(new_speed)
         
     def update_skills(self, skill_data):
         learned = self.game.skill_manager.get_learned_skills()
@@ -276,8 +319,8 @@ class MainWindow(QMainWindow):
         
     def closeEvent(self, event):
         """窗口关闭事件"""
-        from ..world_manager import world_manager
-        world_manager.stop()
+        from core.game_engine import game_engine
+        game_engine.stop()
         event.accept()
         
     def update_sect(self, sect_data):
