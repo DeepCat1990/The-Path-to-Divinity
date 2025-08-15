@@ -60,6 +60,8 @@ class TimeTrigger(Trigger):
     
     def check_condition(self, entity_id, context):
         current_day = context.get("current_day", 1)
+        if isinstance(current_day, dict):
+            current_day = current_day.get('new_day', 1)
         return current_day % self.day_condition == 0
 
 class EncounterSystem:
@@ -87,8 +89,9 @@ class EncounterSystem:
             TimeTrigger(7)  # 每7天触发一次
         ]
     
-    def _check_daily_encounters(self, current_day):
+    def _check_daily_encounters(self, day_data):
         """检查每日奇遇"""
+        current_day = day_data.get('new_day', day_data) if isinstance(day_data, dict) else day_data
         context = {
             "current_day": current_day,
             "world_manager": self.world_manager
