@@ -67,11 +67,13 @@ class WorldManager:
         if not template:
             # 使用默认模板
             template = {
-                "base_attributes": {"constitution": [3, 10]},
-                "initial_stats": {"health": 100, "mana": 50, "lifespan": 80, "age": 16}
+                "core_attributes": {"constitution": [3, 10]},
+                "initial_stats": {"health": 100, "mana": 50, "lifespan": 600, "age": 16}
             }
-        base_attrs = template["base_attributes"]
-        initial_stats = template["initial_stats"]
+        
+        # 适配新的数据结构
+        base_attrs = template.get("core_attributes", template.get("base_attributes", {}))
+        initial_stats = template.get("initial_stats", {})
         
         # 添加组件
         entity.add_component("AttributeComponent", AttributeComponent(
