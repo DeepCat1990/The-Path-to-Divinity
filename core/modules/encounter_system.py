@@ -211,13 +211,45 @@ class EncounterSystem:
                 self._apply_outcome(entity_id, outcome)
                 break
     
+    def _handle_combat_outcome(self, entity_id, combat_data):
+        """处理战斗结果"""
+        enemy_data = {
+            "name": combat_data.get("enemy", "未知敌人"),
+            "health": combat_data.get("level", 1) * 30,
+            "attack": combat_data.get("level", 1) * 10,
+            "defense": combat_data.get("level", 1) * 3
+        }
+        
+        # 通过战斗系统处理战斗
+        if hasattr(self.world_manager, 'combat_system'):
+            self.world_manager.combat_system.handle_encounter_combat(entity_id, enemy_data)
+        else:
+            # 备用简单战斗
+            event_bus.emit("message", f"与{enemy_data['name']}展开激战！")
+            if random.random() < 0.7:  # 70%胜率
+                event_bus.emit("message", "胜利！")
+            else:
+                event_bus.emit("message", "失败...")
+                entity = self.world_manager.get_entity(entity_id)
+                if entity:
+                    attr = entity.get_component("AttributeComponent")
+                    if attr:
+                        attr.health = max(1, attr.health - 20)
+    
     def _apply_outcome(self, entity_id, outcome):
         """应用结果"""
         entity = self.world_manager.get_entity(entity_id)
         if not entity:
             return
         
+        result = outcome.get("result")
         rewards = outcome.get("rewards", {})
+        combat = outcome.get("combat")
+        
+        # 处理战斗结果
+        if combat:
+            self._handle_combat_outcome(entity_id, combat)
+            return
         
         # 应用物品奖励
         if "items" in rewards:
@@ -242,6 +274,14 @@ class EncounterSystem:
                 if gongfa_id not in skills.learned_gongfa:
                     skills.learned_gongfa.append(gongfa_id)
                     event_bus.emit("message", f"学会了功法：{gongfa_id}")
+        
+        # 显示结果消息
+        if result == "treasure_found":
+            event_bus.emit("message", "你发现了宝物！")
+        elif result == "ancient_inheritance":
+            event_bus.emit("message", "你获得了古代传承！")
+        elif result == "safe_retreat":
+            event_bus.emit("message", "你安全地离开了。")
     
     def make_choice(self, entity_id, choice_index):
         """玩家做出选择"""

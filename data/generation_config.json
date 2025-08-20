@@ -1,0 +1,102 @@
+{
+  "character_creation": {
+    "recommended_builds": [
+      {
+        "name": "武学天才",
+        "description": "专精武学修炼，适合新手",
+        "attributes": {
+          "constitution": 8,
+          "comprehension": 6,
+          "charm": 4,
+          "luck": 5,
+          "spiritual_root": 4
+        },
+        "starting_skills": ["basic_sword", "basic_internal"]
+      },
+      {
+        "name": "法术奇才", 
+        "description": "天生法术天赋，灵根优异",
+        "attributes": {
+          "constitution": 5,
+          "comprehension": 8,
+          "charm": 5,
+          "luck": 4,
+          "spiritual_root": 8
+        },
+        "starting_skills": ["basic_spell", "meditation"]
+      },
+      {
+        "name": "社交达人",
+        "description": "魅力超群，善于人际交往",
+        "attributes": {
+          "constitution": 4,
+          "comprehension": 5,
+          "charm": 9,
+          "luck": 7,
+          "spiritual_root": 3
+        },
+        "starting_skills": ["persuasion", "networking"]
+      },
+      {
+        "name": "福缘深厚",
+        "description": "天生好运，奇遇不断",
+        "attributes": {
+          "constitution": 6,
+          "comprehension": 6,
+          "charm": 6,
+          "luck": 9,
+          "spiritual_root": 5
+        },
+        "starting_skills": ["treasure_hunting"]
+      }
+    ]
+  },
+  "marriage_system": {
+    "compatibility_factors": {
+      "charm_weight": 0.3,
+      "constitution_weight": 0.2,
+      "comprehension_weight": 0.2,
+      "luck_weight": 0.1,
+      "age_difference_penalty": 0.2
+    },
+    "success_base_rate": 0.6,
+    "npc_names": {
+      "female": ["雪儿", "月儿", "花儿", "玉儿", "凤儿", "燕儿", "莲儿", "梅儿", "竹儿", "兰儿"],
+      "male": ["志强", "文华", "俊杰", "天明", "子轩", "浩然", "思远", "博文", "宇轩", "晨阳"]
+    }
+  },
+  "inheritance_system": {
+    "skill_inheritance_rate": 0.4,
+    "gongfa_inheritance_rate": 0.6,
+    "attribute_variation_range": 2,
+    "talent_inheritance_bonus": 0.1,
+    "generation_bonus": {
+      "2": {"experience_multiplier": 1.1},
+      "3": {"experience_multiplier": 1.2, "luck_bonus": 1},
+      "5": {"experience_multiplier": 1.3, "luck_bonus": 2},
+      "10": {"experience_multiplier": 1.5, "luck_bonus": 3, "special_trait": "太吾血脉"}
+    }
+  },
+  "family_traits": {
+    "bloodline_powers": [
+      {
+        "name": "太吾真传",
+        "description": "修炼速度提升20%",
+        "unlock_generation": 3,
+        "effects": {"training_speed": 1.2}
+      },
+      {
+        "name": "世家底蕴", 
+        "description": "初始资源丰富",
+        "unlock_generation": 5,
+        "effects": {"starting_items": ["silver_100", "rare_book"]}
+      },
+      {
+        "name": "血脉觉醒",
+        "description": "特殊能力觉醒",
+        "unlock_generation": 10,
+        "effects": {"special_abilities": ["bloodline_burst"]}
+      }
+    ]
+  }
+}

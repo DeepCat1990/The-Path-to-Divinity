@@ -1,82 +1,60 @@
 {
-  "items": {
-    "qi_gathering_pill": {
-      "id": "qi_gathering_pill",
-      "name": "聚气丹",
-      "type": "consumable",
-      "rarity": "common",
-      "stack_limit": 99,
-      "effects": {
-        "mana_restore": 30,
-        "duration": "instant"
-      },
-      "description": "恢复灵力的基础丹药"
+  "spirit_stone": {
+    "id": "spirit_stone",
+    "name": "灵石",
+    "type": "currency",
+    "description": "修炼必需的灵气结晶",
+    "stack_limit": 999,
+    "value": 1
+  },
+  "qi_gathering_pill": {
+    "id": "qi_gathering_pill",
+    "name": "聚气丹",
+    "type": "consumable",
+    "description": "恢复法力值的丹药",
+    "stack_limit": 50,
+    "effects": {
+      "mana_restore": 30
     },
-    "foundation_pill": {
-      "id": "foundation_pill", 
-      "name": "筑基丹",
-      "type": "consumable",
-      "rarity": "rare",
-      "stack_limit": 10,
-      "effects": {
-        "breakthrough_chance": 0.3,
-        "realm_requirement": "qi_condensation_peak"
-      },
-      "description": "助人突破筑基境界的珍贵丹药"
+    "value": 10
+  },
+  "healing_pill": {
+    "id": "healing_pill", 
+    "name": "疗伤丹",
+    "type": "consumable",
+    "description": "恢复生命值的丹药",
+    "stack_limit": 50,
+    "effects": {
+      "health_restore": 40
     },
-    "spirit_stone": {
-      "id": "spirit_stone",
-      "name": "灵石",
-      "type": "currency",
-      "rarity": "common", 
-      "stack_limit": 9999,
-      "effects": {
-        "currency_value": 1
-      },
-      "description": "修仙界通用货币，蕴含纯净灵力"
+    "value": 15
+  },
+  "demonic_core": {
+    "id": "demonic_core",
+    "name": "魔核",
+    "type": "material",
+    "description": "魔修体内的能量结晶",
+    "stack_limit": 20,
+    "value": 50
+  },
+  "flying_sword": {
+    "id": "flying_sword",
+    "name": "飞剑",
+    "type": "weapon",
+    "description": "可御剑飞行的法宝",
+    "stack_limit": 1,
+    "effects": {
+      "physical_attack": 20,
+      "spell_attack": 10
     },
-    "flying_sword": {
-      "id": "flying_sword",
-      "name": "飞剑",
-      "type": "weapon",
-      "rarity": "uncommon",
-      "stack_limit": 1,
-      "equipment_slot": "weapon",
-      "effects": {
-        "attack_power": 25,
-        "spell_power": 15,
-        "special": "can_fly"
-      },
-      "description": "可御空飞行的法器飞剑"
-    },
-    "protective_robe": {
-      "id": "protective_robe",
-      "name": "护体法袍",
-      "type": "armor",
-      "rarity": "uncommon",
-      "stack_limit": 1,
-      "equipment_slot": "chest",
-      "effects": {
-        "defense": 20,
-        "mana_bonus": 30,
-        "resistance": {"fire": 0.2, "ice": 0.2}
-      },
-      "description": "蕴含防护法阵的修士法袍"
-    },
-    "thousand_year_ginseng": {
-      "id": "thousand_year_ginseng",
-      "name": "千年人参",
-      "type": "material",
-      "rarity": "legendary",
-      "stack_limit": 5,
-      "effects": {
-        "alchemy_ingredient": true,
-        "direct_use": {
-          "health_bonus": 100,
-          "lifespan_bonus": 10
-        }
-      },
-      "description": "千年灵药，可直接服用或炼制丹药"
-    }
+    "value": 500
+  },
+  "mysterious_map": {
+    "id": "mysterious_map",
+    "name": "神秘地图",
+    "type": "quest_item",
+    "description": "标记着未知秘境的古老地图",
+    "stack_limit": 1,
+    "value": 200
   }
 }

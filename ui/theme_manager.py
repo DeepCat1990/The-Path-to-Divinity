@@ -2,7 +2,7 @@ class ThemeManager:
     """主题管理器"""
     
     def __init__(self):
-        self.current_theme = "light"
+        self.current_theme = "dark"
         self.themes = {
             "light": {
                 "background": "#ffffff",

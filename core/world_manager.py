@@ -11,6 +11,9 @@ from .modules.encounter_system import EncounterSystem
 from .modules.combat_system import CombatSystem as ModuleCombatSystem
 from .modules.npc_system import NPCSystem
 from .modules.taiwu_system import TaiwuTimeSystem, StanceSystem, AptitudeSystem, RegionSystem, XiangshuSystem
+from .modules.generation_system import GenerationSystem
+from .modules.martial_system import MartialSystem, CombatStrategy
+from .modules.auto_combat_system import AutoCombatSystem
 
 class WorldManager:
     """游戏世界管理器 - 管理ECS和游戏主循环"""
@@ -52,6 +55,10 @@ class WorldManager:
         self.aptitude_system = AptitudeSystem()
         self.region_system = RegionSystem()
         self.xiangshu_system = XiangshuSystem()
+        self.generation_system = GenerationSystem()
+        self.martial_system = MartialSystem()
+        self.combat_strategy = CombatStrategy()
+        self.auto_combat_system = AutoCombatSystem()
     
     def _setup_event_handlers(self):
         """设置事件处理器"""
@@ -158,6 +165,33 @@ class WorldManager:
     def get_entity(self, entity_id: str):
         """获取实体"""
         return self.entity_manager.get_entity(entity_id)
+    
+    def create_entity(self):
+        """创建新实体"""
+        return self.entity_manager.create_entity().id
+    
+    def add_component(self, entity_id: str, component):
+        """为实体添加组件"""
+        entity = self.entity_manager.get_entity(entity_id)
+        if entity:
+            component_name = component.__class__.__name__
+            entity.add_component(component_name, component)
+    
+    def has_component(self, entity_id: str, component_class):
+        """检查实体是否有指定组件"""
+        entity = self.entity_manager.get_entity(entity_id)
+        if entity:
+            component_name = component_class.__name__
+            return entity.has_component(component_name)
+        return False
+    
+    def get_component(self, entity_id: str, component_class):
+        """获取实体的指定组件"""
+        entity = self.entity_manager.get_entity(entity_id)
+        if entity:
+            component_name = component_class.__name__
+            return entity.get_component(component_name)
+        return None
     
     def start(self):
         """启动世界管理器"""

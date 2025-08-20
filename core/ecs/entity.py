@@ -46,6 +46,12 @@ class EntityManager:
         """销毁实体"""
         if entity_id in self.entities:
             del self.entities[entity_id]
+            return True
+        return False
+    
+    def remove_entity(self, entity_id: str):
+        """移除实体（别名）"""
+        return self.destroy_entity(entity_id)
     
     def get_entities_with_components(self, *component_types) -> list:
         """获取拥有指定组件的所有实体"""

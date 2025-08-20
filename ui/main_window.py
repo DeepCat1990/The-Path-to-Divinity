@@ -2,12 +2,15 @@ from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QHBoxLayout, QWidget, QL
 from PySide6.QtCore import Qt, QTimer, QSize
 from PySide6.QtGui import QFont, QIcon, QAction
 from core.events import event_bus
+from core.encounter_ui import EncounterDialog
 from .theme_manager import theme_manager
 from .inventory_window import InventoryWindow
 from .skills_window import SkillsWindow
 from .character_window import CharacterWindow
 from .npc_window import NPCWindow
 from .taiwu_window import TaiwuWindow
+from .generation_window import GenerationWindow
+from .martial_window import MartialWindow
 
 
 class MainWindow(QMainWindow):
@@ -151,36 +154,48 @@ class MainWindow(QMainWindow):
         self.character_btn = QPushButton("角色")
         self.inventory_btn = QPushButton("背包")
         self.skills_btn = QPushButton("技能")
-        self.npc_btn = QPushButton("江湖")
+        self.martial_btn = QPushButton("武学")
         
         self.character_btn.clicked.connect(self.open_character_window)
         self.inventory_btn.clicked.connect(self.open_inventory_window)
         self.skills_btn.clicked.connect(self.open_skills_window)
-        self.npc_btn.clicked.connect(self.open_npc_window)
+        self.martial_btn.clicked.connect(self.open_martial_window)
         
         function_button_layout1.addWidget(self.character_btn)
         function_button_layout1.addWidget(self.inventory_btn)
         function_button_layout1.addWidget(self.skills_btn)
-        function_button_layout1.addWidget(self.npc_btn)
+        function_button_layout1.addWidget(self.martial_btn)
         layout.addLayout(function_button_layout1)
         
         # 功能按钮第二行
         function_button_layout2 = QHBoxLayout()
+        self.npc_btn = QPushButton("江湖")
         self.taiwu_btn = QPushButton("太吾系统")
+        self.generation_btn = QPushButton("世代传承")
         self.pause_btn = QPushButton("暂停")
+        
+        self.npc_btn.clicked.connect(self.open_npc_window)
+        self.taiwu_btn.clicked.connect(self.open_taiwu_window)
+        self.generation_btn.clicked.connect(self.open_generation_window)
+        self.pause_btn.clicked.connect(self.toggle_pause)
+        
+        function_button_layout2.addWidget(self.npc_btn)
+        function_button_layout2.addWidget(self.taiwu_btn)
+        function_button_layout2.addWidget(self.generation_btn)
+        function_button_layout2.addWidget(self.pause_btn)
+        layout.addLayout(function_button_layout2)
+        
+        # 功能按钮第三行
+        function_button_layout3 = QHBoxLayout()
         self.speed_btn = QPushButton("加速")
         self.theme_btn = QPushButton("切换主题")
         
-        self.taiwu_btn.clicked.connect(self.open_taiwu_window)
-        self.pause_btn.clicked.connect(self.toggle_pause)
         self.speed_btn.clicked.connect(self.cycle_speed)
         self.theme_btn.clicked.connect(self.toggle_theme)
         
-        function_button_layout2.addWidget(self.taiwu_btn)
-        function_button_layout2.addWidget(self.pause_btn)
-        function_button_layout2.addWidget(self.speed_btn)
-        function_button_layout2.addWidget(self.theme_btn)
-        layout.addLayout(function_button_layout2)
+        function_button_layout3.addWidget(self.speed_btn)
+        function_button_layout3.addWidget(self.theme_btn)
+        layout.addLayout(function_button_layout3)
         
         # 倒计时器
         self.timer = QTimer()
@@ -201,6 +216,16 @@ class MainWindow(QMainWindow):
         # 初始化时同步ECS实体数据
         self.sync_character_data()
         
+        # 添加测试按钮（仅在开发阶段）
+        test_layout = QHBoxLayout()
+        self.test_encounter_btn = QPushButton("测试奇遇")
+        self.test_spell_btn = QPushButton("测试法术")
+        self.test_encounter_btn.clicked.connect(self.test_encounter)
+        self.test_spell_btn.clicked.connect(self.test_spell)
+        test_layout.addWidget(self.test_encounter_btn)
+        test_layout.addWidget(self.test_spell_btn)
+        layout.addLayout(test_layout)
+        
     def setup_events(self):
         event_bus.subscribe("character_updated", self.update_character_info)
         event_bus.subscribe("message", self.add_message)
@@ -210,6 +235,7 @@ class MainWindow(QMainWindow):
         event_bus.subscribe("month_changed", self.update_month)
         event_bus.subscribe("stance_changed", self.update_stance)
         event_bus.subscribe("xiangshu_phase_change", self.update_xiangshu)
+        event_bus.subscribe("encounter_started", self.show_encounter_dialog)
         
         # 定期同步数据
         self.sync_timer = QTimer()
@@ -226,10 +252,10 @@ class MainWindow(QMainWindow):
         self.speed_options = [0.5, 1.0, 2.0, 5.0]
         
     def update_character_info(self, character_data):
-        self.power_label.setText(f"修为: {character_data['power']}")
-        self.age_label.setText(f"年龄: {character_data['age']}")
+        self.power_label.setText(f"修为: {character_data.get('power', self.game.character.power)}")
+        self.age_label.setText(f"年龄: {character_data.get('age', self.game.character.age)}")
         self.lifespan_label.setText(f"寿命: {character_data.get('lifespan', 80)}")
-        self.talent_label.setText(f"天赋: {character_data['talent']}")
+        self.talent_label.setText(f"天赋: {character_data.get('talent', self.game.character.talent)}")
         self.physical_attack_label.setText(f"物理攻击: {character_data['physical_attack']}")
         self.spell_attack_label.setText(f"法术攻击: {character_data['spell_attack']}")
         self.health_label.setText(f"生命值: {character_data['health']}/100")
@@ -417,6 +443,14 @@ class MainWindow(QMainWindow):
         taiwu_action.triggered.connect(self.open_taiwu_window)
         game_menu.addAction(taiwu_action)
         
+        generation_action = QAction('世代传承', self)
+        generation_action.triggered.connect(self.open_generation_window)
+        game_menu.addAction(generation_action)
+        
+        martial_action = QAction('武学体系', self)
+        martial_action.triggered.connect(self.open_martial_window)
+        game_menu.addAction(martial_action)
+        
         # 设置菜单
         settings_menu = menubar.addMenu('设置')
         
@@ -447,6 +481,16 @@ class MainWindow(QMainWindow):
     def open_taiwu_window(self):
         """打开太吾系统界面"""
         dialog = TaiwuWindow(self.game, self)
+        dialog.exec()
+    
+    def open_generation_window(self):
+        """打开世代传承界面"""
+        dialog = GenerationWindow(self.game, self)
+        dialog.exec()
+    
+    def open_martial_window(self):
+        """打开武学体系界面"""
+        dialog = MartialWindow(self.game, self)
         dialog.exec()
     
     def update_month(self, month_data):
@@ -483,6 +527,37 @@ class MainWindow(QMainWindow):
         self.xiangshu_label.setText(f"相枢威胁: {phase_name}")
         self.xiangshu_label.setStyleSheet(f"color: {color}; font-weight: bold;")
     
+    def test_encounter(self):
+        """测试奇遇系统"""
+        if hasattr(self.game, 'player_entity_id'):
+            from core.world_manager import world_manager
+            if hasattr(world_manager, 'encounter_system'):
+                # 强制触发一个奇遇
+                context = {
+                    "current_day": 7,  # 满足时间触发器
+                    "world_manager": world_manager
+                }
+                world_manager.encounter_system._check_encounters_for_entity(self.game.player_entity_id, context)
+    
+    def test_spell(self):
+        """测试法术系统"""
+        if hasattr(self.game, 'player_entity_id'):
+            from core.world_manager import world_manager
+            player_entity = world_manager.get_entity(self.game.player_entity_id)
+            if player_entity:
+                skill_component = player_entity.get_component("SkillComponent")
+                if skill_component and skill_component.learned_spells:
+                    # 使用第一个学会的法术
+                    spell_id = skill_component.learned_spells[0]
+                    event_bus.emit("request_cast_spell", {
+                        "caster_id": self.game.player_entity_id,
+                        "spell_id": spell_id,
+                        "target_id": None  # 自我施放
+                    })
+                    event_bus.emit("message", f"施放了法术: {spell_id}")
+                else:
+                    event_bus.emit("message", "尚未学会任何法术")
+    
     def toggle_theme(self):
         """切换主题"""
         new_stylesheet = theme_manager.toggle_theme()
@@ -492,3 +567,11 @@ class MainWindow(QMainWindow):
         theme = theme_manager.themes[theme_manager.current_theme]
         self.health_bar.setStyleSheet(f"QProgressBar::chunk {{ background-color: {theme['health_bar']}; }}")
         self.mana_bar.setStyleSheet(f"QProgressBar::chunk {{ background-color: {theme['mana_bar']}; }}")
+    
+    def show_encounter_dialog(self, event_data):
+        """显示奇遇对话框"""
+        encounter = event_data["encounter"]
+        entity_id = event_data["entity_id"]
+        
+        dialog = EncounterDialog(encounter, entity_id, self)
+        dialog.exec()

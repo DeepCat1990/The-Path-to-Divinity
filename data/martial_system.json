@@ -1,0 +1,208 @@
+{
+  "martial_types": {
+    "internal": {
+      "name": "内功",
+      "description": "修炼内力，提升法力和恢复",
+      "color": "#4444ff",
+      "icon": "🧘"
+    },
+    "external": {
+      "name": "外功", 
+      "description": "锻炼体魄，提升攻击和防御",
+      "color": "#ff4444",
+      "icon": "💪"
+    },
+    "agility": {
+      "name": "身法",
+      "description": "提升速度和闪避",
+      "color": "#44ff44",
+      "icon": "🏃"
+    },
+    "special": {
+      "name": "绝技",
+      "description": "特殊技能和奥义",
+      "color": "#ff44ff",
+      "icon": "⚡"
+    }
+  },
+  "martial_skills": {
+    "basic_internal": {
+      "name": "基础内功",
+      "type": "internal",
+      "level": 1,
+      "requirements": {"constitution": 3},
+      "effects": {"max_mana": 10, "mana_regen": 2},
+      "description": "基础的内力修炼法门，增加法力上限",
+      "training_time": 30
+    },
+    "basic_external": {
+      "name": "基础外功",
+      "type": "external", 
+      "level": 1,
+      "requirements": {"constitution": 4},
+      "effects": {"physical_attack": 5, "defense": 3},
+      "description": "强身健体的外功心法，提升攻防",
+      "training_time": 30
+    },
+    "basic_agility": {
+      "name": "基础身法",
+      "type": "agility",
+      "level": 1,
+      "requirements": {"constitution": 3},
+      "effects": {"dodge": 10, "speed": 5},
+      "description": "轻功身法的入门功夫，提升闪避",
+      "training_time": 25
+    },
+    "iron_body": {
+      "name": "铁布衫",
+      "type": "external",
+      "level": 2,
+      "requirements": {"constitution": 6, "prerequisite": "basic_external"},
+      "effects": {"defense": 8, "max_health": 20},
+      "description": "刀枪不入的护体神功",
+      "training_time": 60
+    },
+    "tiger_fist": {
+      "name": "猛虎拳",
+      "type": "external",
+      "level": 2,
+      "requirements": {"constitution": 6, "prerequisite": "basic_external"},
+      "effects": {"physical_attack": 12, "crit_rate": 0.1},
+      "description": "威猛霸道的拳法",
+      "training_time": 60
+    },
+    "deep_meditation": {
+      "name": "深层冥想",
+      "type": "internal",
+      "level": 2,
+      "requirements": {"comprehension": 7, "prerequisite": "basic_internal"},
+      "effects": {"max_mana": 25, "spell_attack": 8},
+      "description": "深入内心的修炼法门",
+      "training_time": 90
+    },
+    "light_step": {
+      "name": "凌波微步",
+      "type": "agility",
+      "level": 2,
+      "requirements": {"comprehension": 6, "prerequisite": "basic_agility"},
+      "effects": {"dodge": 20, "speed": 10},
+      "description": "飘逸如仙的身法",
+      "training_time": 75
+    },
+    "shadow_clone": {
+      "name": "分身术",
+      "type": "special",
+      "level": 2,
+      "requirements": {"comprehension": 8, "spiritual_root": 6},
+      "effects": {"dodge": 15, "confuse_enemy": 0.2},
+      "description": "制造分身迷惑敌人",
+      "training_time": 120
+    },
+    "qi_burst": {
+      "name": "真气爆发",
+      "type": "special",
+      "level": 2,
+      "requirements": {"constitution": 7, "prerequisite": "basic_internal"},
+      "effects": {"spell_attack": 15, "mana_cost": 20},
+      "description": "爆发内力造成大量伤害",
+      "training_time": 100
+    }
+  },
+  "recommended_builds": [
+    {
+      "name": "刚猛路线",
+      "description": "以外功为主，内功为辅，攻防兼备",
+      "focus": ["external", "internal"],
+      "skills": ["basic_external", "iron_body", "tiger_fist", "basic_internal"],
+      "advantages": ["高攻击力", "强防御力", "适合近战"],
+      "disadvantages": ["速度较慢", "法术攻击弱"]
+    },
+    {
+      "name": "灵巧路线",
+      "description": "身法配合绝技，灵活多变",
+      "focus": ["agility", "special"],
+      "skills": ["basic_agility", "light_step", "shadow_clone"],
+      "advantages": ["高闪避", "多变战术", "难以捉摸"],
+      "disadvantages": ["攻击力中等", "防御较弱"]
+    },
+    {
+      "name": "内力路线",
+      "description": "深厚内功配合法术攻击",
+      "focus": ["internal", "special"],
+      "skills": ["basic_internal", "deep_meditation", "qi_burst"],
+      "advantages": ["高法力", "强法术攻击", "持续作战"],
+      "disadvantages": ["物理防御弱", "近战不利"]
+    },
+    {
+      "name": "全能路线",
+      "description": "四种武学均衡发展",
+      "focus": ["internal", "external", "agility", "special"],
+      "skills": ["basic_internal", "basic_external", "basic_agility"],
+      "advantages": ["无明显短板", "适应性强"],
+      "disadvantages": ["无突出优势", "发展较慢"]
+    }
+  ],
+  "synergy_effects": [
+    {
+      "name": "内外兼修",
+      "required_skills": ["basic_internal", "basic_external"],
+      "description": "内功外功并重，攻防平衡",
+      "bonus": {"all_attributes": 1, "training_speed": 1.1}
+    },
+    {
+      "name": "刚猛无双",
+      "required_skills": ["iron_body", "tiger_fist"],
+      "description": "攻防俱佳的刚猛路线",
+      "bonus": {"physical_attack": 3, "defense": 3, "intimidation": 0.1}
+    },
+    {
+      "name": "身法大成",
+      "required_skills": ["light_step", "shadow_clone"],
+      "description": "身法与绝技的完美结合",
+      "bonus": {"dodge": 10, "speed": 5, "first_strike": 0.2}
+    },
+    {
+      "name": "内力深厚",
+      "required_skills": ["deep_meditation", "qi_burst"],
+      "description": "深厚内力支撑强大法术",
+      "bonus": {"max_mana": 15, "spell_attack": 5, "mana_efficiency": 0.9}
+    }
+  ],
+  "combat_strategies": {
+    "aggressive": {
+      "name": "激进攻击",
+      "description": "优先使用攻击技能，快速解决战斗",
+      "priority": ["attack", "special", "defend"],
+      "modifiers": {"attack_bonus": 1.2, "defense_penalty": 0.9}
+    },
+    "defensive": {
+      "name": "稳健防守",
+      "description": "优先防御和恢复，稳扎稳打",
+      "priority": ["defend", "heal", "attack"],
+      "modifiers": {"defense_bonus": 1.3, "attack_penalty": 0.8}
+    },
+    "balanced": {
+      "name": "攻防平衡",
+      "description": "根据情况灵活应对，攻防并重",
+      "priority": ["attack", "defend", "special"],
+      "modifiers": {"balanced_bonus": 1.1}
+    },
+    "technical": {
+      "name": "技巧流",
+      "description": "依靠技巧和绝技取胜",
+      "priority": ["special", "agility", "attack"],
+      "modifiers": {"special_bonus": 1.3, "dodge_bonus": 1.2}
+    }
+  },
+  "auto_training": {
+    "enabled": false,
+    "focus": "balanced",
+    "resource_allocation": {
+      "balanced": {"internal": 0.25, "external": 0.25, "agility": 0.25, "special": 0.25},
+      "internal": {"internal": 0.6, "external": 0.2, "agility": 0.1, "special": 0.1},
+      "external": {"internal": 0.2, "external": 0.6, "agility": 0.1, "special": 0.1},
+      "agility": {"internal": 0.1, "external": 0.1, "agility": 0.6, "special": 0.2},
+      "special": {"internal": 0.2, "external": 0.1, "agility": 0.2, "special": 0.5}
+    }
+  }
+}

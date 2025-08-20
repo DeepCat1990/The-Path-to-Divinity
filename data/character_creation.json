@@ -1,0 +1,145 @@
+{
+  "birthplaces": {
+    "central_plains": {
+      "name": "中原",
+      "description": "武林正道聚集之地，民风淳朴",
+      "attribute_bonus": {"constitution": 1, "charm": 1},
+      "starting_items": ["basic_medicine"]
+    },
+    "western_regions": {
+      "name": "西域",
+      "description": "异域风情，商贾云集",
+      "attribute_bonus": {"luck": 2},
+      "starting_items": ["rare_gem"]
+    },
+    "southern_wilderness": {
+      "name": "南疆",
+      "description": "瘴气弥漫，毒虫横行",
+      "attribute_bonus": {"constitution": 2},
+      "starting_items": ["antidote"]
+    }
+  },
+  "zhuazhou_items": {
+    "sword": {
+      "name": "宝剑",
+      "description": "锋利的宝剑，预示武学天赋",
+      "attribute_bonus": {"constitution": 1},
+      "martial_aptitude_bonus": {"sword": 2, "external": 1}
+    },
+    "book": {
+      "name": "古书",
+      "description": "古老的典籍，预示学识渊博",
+      "attribute_bonus": {"comprehension": 2},
+      "skill_aptitude_bonus": {"poetry": 2, "medicine": 1}
+    },
+    "jade": {
+      "name": "美玉",
+      "description": "温润的美玉，预示人缘极佳",
+      "attribute_bonus": {"charm": 2},
+      "social_bonus": 10
+    },
+    "coin": {
+      "name": "金币",
+      "description": "闪亮的金币，预示财运亨通",
+      "attribute_bonus": {"luck": 2},
+      "starting_money": 1000
+    }
+  },
+  "initial_traits": {
+    "qinqishushua": {
+      "name": "琴棋书画",
+      "description": "提高音律、弈棋、诗书、绘画资质",
+      "cost": 3,
+      "skill_aptitude_bonus": {"music": 3, "chess": 3, "poetry": 3, "painting": 3}
+    },
+    "yirenziran": {
+      "name": "一任自然",
+      "description": "提高佛学、道法、玄学、术数资质",
+      "cost": 2,
+      "skill_aptitude_bonus": {"buddhism": 2, "taoism": 2, "mysticism": 2}
+    },
+    "fuzhishiyong": {
+      "name": "服芝食用",
+      "description": "增加寿命，提高健康上限",
+      "cost": 4,
+      "attribute_bonus": {"constitution": 2},
+      "lifespan_bonus": 20,
+      "health_bonus": 50
+    },
+    "tianrenzaohua": {
+      "name": "天人造化",
+      "description": "提高魅力",
+      "cost": 2,
+      "attribute_bonus": {"charm": 3}
+    },
+    "puyutaoguang": {
+      "name": "璞玉韬光",
+      "description": "提高所有技艺资质",
+      "cost": 5,
+      "all_skill_aptitude_bonus": 1
+    },
+    "shenfengliankai": {
+      "name": "神锋敛彩",
+      "description": "提高所有武学资质",
+      "cost": 5,
+      "all_martial_aptitude_bonus": 1
+    },
+    "guzhongyike": {
+      "name": "古冢遗刻",
+      "description": "获得高级功法",
+      "cost": 4,
+      "starting_gongfa": ["advanced_internal", "mysterious_palm"]
+    },
+    "mengjingzhongren": {
+      "name": "梦境中人",
+      "description": "获得特殊物品",
+      "cost": 3,
+      "starting_items": ["dream_crystal", "spirit_herb"]
+    },
+    "guzhongmiyou": {
+      "name": "谷中密友",
+      "description": "获得一个高好感度的同伴",
+      "cost": 4,
+      "starting_companion": "valley_friend"
+    }
+  },
+  "six_attributes": {
+    "constitution": {"name": "体质", "description": "影响生命值、内外伤上限、恢复速度"},
+    "determination": {"name": "定力", "description": "影响真气上限、内息紊乱恢复速度"},
+    "bone_root": {"name": "根骨", "description": "影响功法发挥、资质上限"},
+    "comprehension": {"name": "悟性", "description": "影响技艺资质、功法研读速度"},
+    "charm": {"name": "魅力", "description": "影响与NPC的好感度、倾诉爱意成功率"},
+    "luck": {"name": "幸运", "description": "影响各种随机事件的概率、奇遇触发"}
+  },
+  "five_elements": {
+    "metal": {"name": "金刚", "description": "金属性功法威力", "counter": "wood"},
+    "wood": {"name": "玄阴", "description": "木属性功法威力", "counter": "earth"},
+    "water": {"name": "紫霞", "description": "水属性功法威力", "counter": "fire"},
+    "fire": {"name": "纯阳", "description": "火属性功法威力", "counter": "metal"},
+    "earth": {"name": "归元", "description": "土属性功法威力", "counter": "water"},
+    "chaos": {"name": "混元", "description": "混沌属性，无相生相克"}
+  },
+  "skill_aptitudes": {
+    "music": {"name": "音律", "description": "音乐才能"},
+    "chess": {"name": "弈棋", "description": "棋艺天赋"},
+    "poetry": {"name": "诗书", "description": "文学造诣"},
+    "painting": {"name": "绘画", "description": "绘画技巧"},
+    "medicine": {"name": "医术", "description": "医药知识"},
+    "poison": {"name": "毒术", "description": "毒药制作"},
+    "forging": {"name": "锻造", "description": "武器锻造"},
+    "woodwork": {"name": "制木", "description": "木工技艺"},
+    "crafting": {"name": "巧匠", "description": "精巧制作"},
+    "weaving": {"name": "织锦", "description": "纺织技艺"},
+    "appraisal": {"name": "品鉴", "description": "物品鉴定"},
+    "cooking": {"name": "厨艺", "description": "烹饪技巧"}
+  },
+  "martial_aptitudes": {
+    "sword": {"name": "剑法", "description": "剑术修炼"},
+    "blade": {"name": "刀法", "description": "刀术修炼"},
+    "fist": {"name": "拳掌", "description": "拳掌功夫"},
+    "finger": {"name": "指法", "description": "指法绝技"},
+    "internal": {"name": "内功", "description": "内力修炼"},
+    "movement": {"name": "身法", "description": "轻功身法"},
+    "special": {"name": "绝技", "description": "特殊武学"}
+  }
+}

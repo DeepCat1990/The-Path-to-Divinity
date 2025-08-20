@@ -188,6 +188,63 @@ class CombatSystem:
         
         event_bus.emit("message", "战斗结束！")
     
+    def handle_encounter_combat(self, entity_id, enemy_data):
+        """处理奇遇战斗"""
+        # 创建敌人实体
+        enemy_entity = self.world_manager.entity_manager.create_entity()
+        from ..ecs.components import AttributeComponent, StateComponent
+        
+        enemy_attr = AttributeComponent(
+            health=enemy_data.get("health", 80),
+            max_health=enemy_data.get("health", 80),
+            physical_attack=enemy_data.get("attack", 15),
+            defense=enemy_data.get("defense", 5)
+        )
+        enemy_entity.add_component("AttributeComponent", enemy_attr)
+        enemy_entity.add_component("StateComponent", StateComponent())
+        
+        # 开始自动战斗
+        self._auto_combat(entity_id, enemy_entity.id, enemy_data.get("name", "未知敌人"))
+    
+    def _auto_combat(self, player_id, enemy_id, enemy_name):
+        """自动战斗"""
+        player = self.world_manager.get_entity(player_id)
+        enemy = self.world_manager.get_entity(enemy_id)
+        
+        if not player or not enemy:
+            return
+        
+        player_attr = player.get_component("AttributeComponent")
+        enemy_attr = enemy.get_component("AttributeComponent")
+        
+        event_bus.emit("message", f"与{enemy_name}展开激战！")
+        
+        # 简单的回合制战斗
+        rounds = 0
+        while player_attr.health > 0 and enemy_attr.health > 0 and rounds < 10:
+            rounds += 1
+            
+            # 玩家攻击
+            player_damage = max(1, player_attr.physical_attack + player_attr.spell_attack - enemy_attr.defense)
+            enemy_attr.health = max(0, enemy_attr.health - player_damage)
+            
+            if enemy_attr.health <= 0:
+                event_bus.emit("message", f"击败了{enemy_name}！")
+                event_bus.emit("combat_victory", {"player_id": player_id, "enemy_name": enemy_name})
+                break
+            
+            # 敌人攻击
+            enemy_damage = max(1, enemy_attr.physical_attack - player_attr.defense)
+            player_attr.health = max(0, player_attr.health - enemy_damage)
+            
+            if player_attr.health <= 0:
+                event_bus.emit("message", f"被{enemy_name}击败了...")
+                event_bus.emit("combat_defeat", {"player_id": player_id, "enemy_name": enemy_name})
+                break
+        
+        # 清理敌人实体
+        self.world_manager.entity_manager.remove_entity(enemy_id)
+    
     def start_combat(self, attacker_id, defender_id):
         """开始战斗"""
         event_bus.emit("combat_start", {
