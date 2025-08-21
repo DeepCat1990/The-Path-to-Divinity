@@ -14,6 +14,7 @@ from .modules.taiwu_system import TaiwuTimeSystem, StanceSystem, AptitudeSystem,
 from .modules.generation_system import GenerationSystem
 from .modules.martial_system import MartialSystem, CombatStrategy
 from .modules.auto_combat_system import AutoCombatSystem
+from .modules.attribute_system import AttributeEffectSystem
 
 class WorldManager:
     """游戏世界管理器 - 管理ECS和游戏主循环"""
@@ -59,6 +60,7 @@ class WorldManager:
         self.martial_system = MartialSystem()
         self.combat_strategy = CombatStrategy()
         self.auto_combat_system = AutoCombatSystem()
+        self.attribute_system = AttributeEffectSystem()
     
     def _setup_event_handlers(self):
         """设置事件处理器"""
